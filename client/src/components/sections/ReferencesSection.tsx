@@ -46,7 +46,7 @@ const clients = [
 
 const partnerCategories = [
   {
-    category: "ICT & Virtualisation",
+    category: "ICT",
     partners: [
       { name: "Cisco", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image193_63a1a8c4.png" },
       { name: "Fortinet", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image194_01fd48b2.png" },

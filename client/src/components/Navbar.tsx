@@ -59,7 +59,7 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="container flex items-center justify-between h-18 lg:h-20">
+      <nav className="container flex items-center justify-between h-20 lg:h-24">
         {/* Logo */}
         <a
           href="#accueil"
@@ -70,9 +70,11 @@ export default function Navbar() {
           className="flex items-center gap-2 group"
         >
           <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image16_be5167b1.png"
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image242_b3ec7ebf.png"
             alt="Teranga Technology & Energy"
-            className="h-10 lg:h-12 w-auto object-contain"
+            className={`h-14 lg:h-16 w-auto object-contain transition-all rounded-lg px-2 py-1 ${
+              scrolled ? "" : "bg-white/90 backdrop-blur-sm shadow-sm"
+            }`}
           />
         </a>
 

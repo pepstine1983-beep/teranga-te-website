@@ -41,7 +41,7 @@ const expertises = [
   {
     id: "ict",
     icon: Monitor,
-    title: "ICT & Réseaux",
+    title: "ICT",
     subtitle: "Infrastructure & Services Managés",
     description:
       "Conception, déploiement et gestion d'infrastructures IT complètes. Nous couvrons l'ensemble du cycle de vie : audit, design, installation, infogérance et support 24/7 avec des SLA contractuels.",

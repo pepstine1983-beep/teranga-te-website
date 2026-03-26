@@ -5,7 +5,7 @@
 import { Phone, Mail, MapPin, ArrowUp } from "lucide-react";
 
 const expertises = [
-  "ICT & Infogérance",
+  "ICT",
   "Énergie",
   "Énergies Renouvelables",
   "Contrôle Technique",
@@ -42,7 +42,7 @@ export default function Footer() {
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image242_b3ec7ebf.png"
                 alt="Teranga Technology & Energy"
-                className="h-14 w-auto object-contain"
+                className="h-16 w-auto object-contain"
               />
             </div>
             <p className="text-white/70 text-sm leading-relaxed mb-5">

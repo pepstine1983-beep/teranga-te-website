@@ -1,11 +1,14 @@
 /**
  * Teranga Flow - About Section
- * Story-driven layout with timeline, vision 2028, 4 pillars, and Teranga DNA.
+ * Story-driven layout with MD message, vision 2028, 4 pillars, and Teranga DNA.
  */
-import { Target, Users, Clock, Award, Lightbulb, HandshakeIcon, Leaf, Globe } from "lucide-react";
+import { Target, Users, Clock, Award, Lightbulb, HandshakeIcon, Leaf, Globe, Quote } from "lucide-react";
 import AnimatedSection from "../AnimatedSection";
 import SectionTitle from "../SectionTitle";
 import CounterAnimation from "../CounterAnimation";
+
+const MD_PHOTO =
+  "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/md-papa-moussa-tine_afce5590.png";
 
 const pillars = [
   {
@@ -63,76 +66,121 @@ export default function AboutSection() {
           subtitle="Fondée en 2026 à Dakar, Teranga TE incarne la rencontre entre expertise technique de haut niveau et excellence RH au service du Sahel."
         />
 
-        {/* Story + Vision grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-20">
-          {/* Story */}
+        {/* MD Message + Story grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 mb-16">
+          {/* Managing Director Message */}
           <AnimatedSection direction="left">
-            <div className="relative">
-              <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#D4A843] to-[#0B3D6E] rounded-full hidden md:block" />
-              <div className="md:pl-8">
-                <h3 className="text-2xl text-[#0B3D6E] font-['Outfit'] font-bold mb-4">Notre Histoire</h3>
-                <p className="text-[#0B3D6E]/70 leading-relaxed mb-4">
-                  Fondée par <strong>Papa Moussa Tine</strong> et <strong>AfriRH</strong>, Teranga TE
-                  est née de la conviction que l'Afrique de l'Ouest mérite des services managés de
-                  haut niveau, alliant réactivité locale et standards internationaux.
+            <div className="relative bg-white rounded-2xl border border-[#D4A843]/15 shadow-sm overflow-hidden h-full">
+              {/* Decorative top bar */}
+              <div className="h-1.5 bg-gradient-to-r from-[#0B3D6E] via-[#D4A843] to-[#0B3D6E]" />
+
+              <div className="p-6 md:p-8">
+                {/* Quote icon */}
+                <div className="w-10 h-10 rounded-full bg-[#D4A843]/10 flex items-center justify-center mb-5">
+                  <Quote className="w-5 h-5 text-[#D4A843]" />
+                </div>
+
+                <h3 className="text-xl text-[#0B3D6E] font-['DM_Serif_Display'] italic mb-5">
+                  Le mot du Directeur Général
+                </h3>
+
+                <p className="text-[#0B3D6E]/75 leading-relaxed mb-4 text-[15px]">
+                  « Chez Teranga TE, nous croyons que l'Afrique de l'Ouest mérite des services technologiques
+                  et énergétiques de classe mondiale, délivrés avec la chaleur et la proximité qui font
+                  la force de notre continent.
                 </p>
-                <p className="text-[#0B3D6E]/70 leading-relaxed mb-4">
-                  Notre nom, <em>Teranga</em>, évoque l'hospitalité sénégalaise — une valeur que nous
-                  portons dans chaque interaction avec nos clients et partenaires. C'est cette philosophie
-                  qui guide notre approche : transformer la complexité technique en avantage compétitif
-                  simple pour votre entreprise.
+                <p className="text-[#0B3D6E]/75 leading-relaxed mb-4 text-[15px]">
+                  Notre ambition est simple : être le partenaire unique qui transforme la complexité
+                  technique en avantage compétitif pour nos clients. Chaque projet que nous menons
+                  porte notre signature — l'excellence technique alliée à l'hospitalité sénégalaise,
+                  la <em>Teranga</em>.
                 </p>
-                <p className="text-[#0B3D6E]/70 leading-relaxed">
-                  Avec un modèle financier flexible (CAPEX ou OPEX), nous nous adaptons à la structure
-                  de chaque client, des TPE aux grands groupes multi-sites.
+                <p className="text-[#0B3D6E]/75 leading-relaxed mb-6 text-[15px]">
+                  Ensemble, construisons les infrastructures qui porteront la croissance du Sahel. »
                 </p>
+
+                {/* Author */}
+                <div className="flex items-center gap-4 pt-4 border-t border-[#D4A843]/10">
+                  <img
+                    src={MD_PHOTO}
+                    alt="Papa Moussa TINE - Managing Director"
+                    className="w-16 h-16 rounded-full object-cover object-top border-2 border-[#D4A843]/30 shadow-md"
+                  />
+                  <div>
+                    <p className="font-['Outfit'] font-bold text-[#0B3D6E] text-base">
+                      Papa Moussa TINE
+                    </p>
+                    <p className="text-[#D4A843] font-['Outfit'] font-medium text-sm">
+                      Managing Director
+                    </p>
+                    <p className="text-[#0B3D6E]/50 text-xs font-['Outfit']">
+                      Fondateur de Teranga TE
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </AnimatedSection>
 
           {/* Vision 2028 */}
           <AnimatedSection direction="right">
-            <div className="bg-gradient-to-br from-[#0B3D6E] to-[#0B3D6E]/90 rounded-2xl p-8 md:p-10 text-white relative overflow-hidden">
-              {/* Decorative circles */}
-              <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-[#D4A843]/10" />
-              <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#D4A843]/5" />
+            <div className="flex flex-col gap-6 h-full">
+              {/* Story */}
+              <div className="relative">
+                <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-[#D4A843] to-[#0B3D6E] rounded-full hidden md:block" />
+                <div className="md:pl-8">
+                  <h3 className="text-2xl text-[#0B3D6E] font-['Outfit'] font-bold mb-4">Notre Histoire</h3>
+                  <p className="text-[#0B3D6E]/70 leading-relaxed mb-3">
+                    Fondée par <strong>Papa Moussa TINE</strong> et <strong>AfriRH</strong>, Teranga TE
+                    est née de la conviction que l'Afrique de l'Ouest mérite des services managés de
+                    haut niveau, alliant réactivité locale et standards internationaux.
+                  </p>
+                  <p className="text-[#0B3D6E]/70 leading-relaxed">
+                    Avec un modèle financier flexible (CAPEX ou OPEX), nous nous adaptons à la structure
+                    de chaque client, des TPE aux grands groupes multi-sites.
+                  </p>
+                </div>
+              </div>
 
-              <div className="relative z-10">
-                <span className="inline-block font-['Outfit'] font-semibold text-xs uppercase tracking-[0.2em] text-[#D4A843] mb-3">
-                  Vision 2028
-                </span>
-                <h3 className="text-2xl text-white font-['Outfit'] font-bold mb-4">
-                  Référence technologique du Sahel
-                </h3>
-                <p className="text-white/80 leading-relaxed mb-4">
-                  Devenir le partenaire technologique de référence au Sahel pour les
-                  infrastructures critiques, avec une présence consolidée dans 6+ pays et un
-                  impact ESG mesurable.
-                </p>
-                <p className="text-white/60 text-sm leading-relaxed mb-8">
-                  Objectifs : Expansion régionale (Sénégal, Mali, Burkina Faso, Niger, Guinée, Côte d'Ivoire),
-                  création d'un centre de formation technique, et développement de solutions IoT pour l'énergie.
-                </p>
+              {/* Vision 2028 card */}
+              <div className="bg-gradient-to-br from-[#0B3D6E] to-[#0B3D6E]/90 rounded-2xl p-7 md:p-8 text-white relative overflow-hidden flex-1">
+                {/* Decorative circles */}
+                <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-[#D4A843]/10" />
+                <div className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full bg-[#D4A843]/5" />
 
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center">
-                    <div className="text-3xl font-[Outfit] font-bold text-[#D4A843]">
-                      <CounterAnimation target={6} suffix="+" />
+                <div className="relative z-10">
+                  <span className="inline-block font-['Outfit'] font-semibold text-xs uppercase tracking-[0.2em] text-[#D4A843] mb-2">
+                    Vision 2028
+                  </span>
+                  <h3 className="text-xl text-white font-['Outfit'] font-bold mb-3">
+                    Référence technologique du Sahel
+                  </h3>
+                  <p className="text-white/80 leading-relaxed mb-6 text-sm">
+                    Devenir le partenaire technologique de référence au Sahel pour les
+                    infrastructures critiques, avec une présence consolidée dans 6+ pays et un
+                    impact ESG mesurable.
+                  </p>
+
+                  {/* Stats */}
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="text-center">
+                      <div className="text-2xl font-[Outfit] font-bold text-[#D4A843]">
+                        <CounterAnimation target={6} suffix="+" />
+                      </div>
+                      <span className="text-white/60 text-xs font-['Outfit']">Pays</span>
                     </div>
-                    <span className="text-white/60 text-xs font-['Outfit']">Pays</span>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-[Outfit] font-bold text-[#D4A843]">
-                      <CounterAnimation target={98} suffix="%" />
+                    <div className="text-center">
+                      <div className="text-2xl font-[Outfit] font-bold text-[#D4A843]">
+                        <CounterAnimation target={98} suffix="%" />
+                      </div>
+                      <span className="text-white/60 text-xs font-['Outfit']">SLA garanti</span>
                     </div>
-                    <span className="text-white/60 text-xs font-['Outfit']">SLA garanti</span>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-[Outfit] font-bold text-[#D4A843]">
-                      24/7
+                    <div className="text-center">
+                      <div className="text-2xl font-[Outfit] font-bold text-[#D4A843]">
+                        24/7
+                      </div>
+                      <span className="text-white/60 text-xs font-['Outfit']">Support</span>
                     </div>
-                    <span className="text-white/60 text-xs font-['Outfit']">Support</span>
                   </div>
                 </div>
               </div>
