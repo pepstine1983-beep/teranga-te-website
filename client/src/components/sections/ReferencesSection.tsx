@@ -1,18 +1,79 @@
 /**
  * Teranga Flow - References & Partners Section
- * Partner logos, testimonials, and trust indicators.
+ * Real client logos, technology partner logos, and testimonials.
  */
 import { Quote } from "lucide-react";
 import AnimatedSection from "../AnimatedSection";
 import SectionTitle from "../SectionTitle";
 
-const partners = [
-  { name: "IBM", color: "#0530AD" },
-  { name: "Palo Alto Networks", color: "#FA582D" },
-  { name: "APC", color: "#E4002B" },
-  { name: "Cummins", color: "#E31937" },
-  { name: "Schneider Electric", color: "#3DCD58" },
-  { name: "Cisco", color: "#049FD9" },
+const clients = [
+  {
+    name: "AfriRH",
+    sector: "RH & Conseil",
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image201_00e0a760.png",
+  },
+  {
+    name: "Afriland Company",
+    sector: "Immobilier & Bâtiment",
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image206_c20c5a56.png",
+  },
+  {
+    name: "Godifa Technologies",
+    sector: "Technologies & Innovation",
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image202_c5943d34.png",
+  },
+  {
+    name: "HCP",
+    sector: "Conseil & Projets",
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image203_58b2eb9c.jpeg",
+  },
+  {
+    name: "NBW Law Firm",
+    sector: "Service Juridique",
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image204_a16db25c.png",
+  },
+  {
+    name: "Al Amine Groupe",
+    sector: "GED & Archivage",
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image205_5802c025.png",
+  },
+  {
+    name: "KAI",
+    sector: "Transport & Mobilité",
+    logo: null,
+  },
+];
+
+const partnerCategories = [
+  {
+    category: "ICT & Virtualisation",
+    partners: [
+      { name: "Cisco", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image193_63a1a8c4.png" },
+      { name: "Fortinet", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image194_01fd48b2.png" },
+      { name: "VMware", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image171_f57b395b.png" },
+      { name: "Microsoft", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image177_a34dc56b.png" },
+      { name: "HP", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image174_e5423688.png" },
+    ],
+  },
+  {
+    category: "Impression (MPS)",
+    partners: [
+      { name: "Ricoh", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image173_b629c911.png" },
+      { name: "Riso", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image172_ae44fdd3.png" },
+      { name: "Epson", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image186_21629bff.png" },
+    ],
+  },
+  {
+    category: "Énergie & Solaire",
+    partners: [
+      { name: "JinKO Solar", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image191_5c39e4d9.png" },
+      { name: "JA Solar", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image192_30b97b2e.png" },
+      { name: "Huawei", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image188_8c88e19f.png" },
+      { name: "SMA", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image189_9679846e.png" },
+      { name: "Victron Energy", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image187_84633471.png" },
+      { name: "Kohler", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image184_bab07b6a.png" },
+    ],
+  },
 ];
 
 const testimonials = [
@@ -37,27 +98,65 @@ export default function ReferencesSection() {
         <SectionTitle
           label="Ils nous font confiance"
           title="Références & Partenaires"
-          subtitle="Des PME aux grands groupes, nos solutions accompagnent les leaders du Sahel."
+          subtitle="Nos clients nous choisissent pour notre expertise, notre réactivité et notre engagement à leurs côtés."
         />
 
-        {/* Partner logos */}
+        {/* Client logos */}
         <AnimatedSection className="mb-16">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
-            {partners.map((partner) => (
+          <h3 className="text-xl text-[#0B3D6E] text-center mb-8 font-['Outfit'] font-semibold">
+            Nos Clients
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
+            {clients.map((client) => (
               <div
-                key={partner.name}
-                className="group flex items-center justify-center h-24 bg-white rounded-xl border border-[#D4A843]/10 hover:border-[#D4A843]/30 hover:shadow-md transition-all"
+                key={client.name}
+                className="group flex flex-col items-center justify-center h-28 bg-white rounded-xl border border-[#D4A843]/10 hover:border-[#D4A843]/30 hover:shadow-md transition-all p-4"
               >
-                <div className="flex flex-col items-center gap-1">
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-['Outfit'] font-bold text-sm"
-                    style={{ backgroundColor: partner.color }}
-                  >
-                    {partner.name.charAt(0)}
+                {client.logo ? (
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    className="h-12 max-w-[100px] object-contain mb-2 group-hover:scale-105 transition-transform"
+                  />
+                ) : (
+                  <div className="h-12 flex items-center justify-center mb-2">
+                    <span className="text-[#0B3D6E] font-['Outfit'] font-bold text-xl">
+                      {client.name}
+                    </span>
                   </div>
-                  <span className="text-[#0B3D6E]/70 text-xs font-['Outfit'] font-medium text-center px-2 leading-tight">
-                    {partner.name}
-                  </span>
+                )}
+                <span className="text-[#0B3D6E]/50 text-[10px] font-['Outfit'] text-center leading-tight">
+                  {client.sector}
+                </span>
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
+
+        {/* Technology Partners */}
+        <AnimatedSection className="mb-16">
+          <h3 className="text-xl text-[#0B3D6E] text-center mb-8 font-['Outfit'] font-semibold">
+            Partenaires Technologiques
+          </h3>
+          <div className="space-y-8">
+            {partnerCategories.map((cat) => (
+              <div key={cat.category}>
+                <p className="text-sm font-['Outfit'] font-medium text-[#D4A843] uppercase tracking-wider mb-4 text-center">
+                  {cat.category}
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  {cat.partners.map((partner) => (
+                    <div
+                      key={partner.name}
+                      className="group flex items-center justify-center h-16 w-32 bg-white rounded-xl border border-[#0B3D6E]/5 hover:border-[#D4A843]/20 hover:shadow-sm transition-all p-3"
+                    >
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="h-8 max-w-[100px] object-contain group-hover:scale-105 transition-transform"
+                      />
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}

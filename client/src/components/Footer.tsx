@@ -38,14 +38,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-5">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-white/20 to-[#D4A843] flex items-center justify-center">
-                <span className="text-white font-[Outfit] font-bold text-lg">T</span>
-              </div>
-              <div>
-                <span className="font-[Outfit] font-bold text-lg text-white">Teranga TE</span>
-                <span className="block text-[10px] tracking-wider uppercase text-[#D4A843]">Technology & Energy</span>
-              </div>
+            <div className="mb-5">
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image242_b3ec7ebf.png"
+                alt="Teranga Technology & Energy"
+                className="h-14 w-auto object-contain"
+              />
             </div>
             <p className="text-white/70 text-sm leading-relaxed mb-5">
               Votre partenaire intégré en Technologie, Énergie et Solutions Innovantes pour le Sahel.

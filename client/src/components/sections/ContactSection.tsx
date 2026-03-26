@@ -27,7 +27,7 @@ const contactInfo = [
   {
     icon: Clock,
     label: "Disponibilité",
-    values: ["Support 24/7"],
+    values: ["Support 24/7", "Réponse sous 48h"],
   },
 ];
 
@@ -98,6 +98,12 @@ export default function ContactSection() {
                   <CheckCircle className="w-4 h-4 text-[#0B3D6E]" />
                   <span className="text-[#0B3D6E] text-xs font-['Outfit'] font-medium">
                     Audit offert
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 p-3 bg-gradient-to-r from-[#5B7B3A]/10 to-transparent rounded-xl border border-[#5B7B3A]/20 col-span-2">
+                  <CheckCircle className="w-4 h-4 text-[#5B7B3A]" />
+                  <span className="text-[#0B3D6E] text-xs font-['Outfit'] font-medium">
+                    Disponibilité immédiate
                   </span>
                 </div>
               </div>

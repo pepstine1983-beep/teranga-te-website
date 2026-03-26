@@ -11,6 +11,7 @@ const navLinks = [
   { label: "Accueil", href: "#accueil" },
   { label: "À propos", href: "#apropos" },
   { label: "Expertises", href: "#expertises" },
+  { label: "Offres", href: "#offres" },
   { label: "Références", href: "#references" },
   { label: "Sahel", href: "#sahel" },
   { label: "Contact", href: "#contact" },
@@ -68,25 +69,11 @@ export default function Navbar() {
           }}
           className="flex items-center gap-2 group"
         >
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#0B3D6E] to-[#D4A843] flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
-            <span className="text-white font-[Outfit] font-bold text-lg leading-none">T</span>
-          </div>
-          <div className="flex flex-col">
-            <span
-              className={`font-[Outfit] font-bold text-lg leading-tight transition-colors ${
-                scrolled ? "text-[#0B3D6E]" : "text-white"
-              }`}
-            >
-              Teranga TE
-            </span>
-            <span
-              className={`text-[10px] font-['Source_Sans_3'] tracking-wider uppercase transition-colors ${
-                scrolled ? "text-[#D4A843]" : "text-[#D4A843]"
-              }`}
-            >
-              Technology & Energy
-            </span>
-          </div>
+          <img
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image16_be5167b1.png"
+            alt="Teranga Technology & Energy"
+            className="h-10 lg:h-12 w-auto object-contain"
+          />
         </a>
 
         {/* Desktop Nav */}

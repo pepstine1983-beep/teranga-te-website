@@ -1,6 +1,6 @@
 /**
  * Teranga Flow - Expertises Section
- * 4 expertise domains with image cards and detailed service lists.
+ * 4 expertise domains with image cards, detailed service lists, and enriched descriptions.
  * Sand background with wave separators.
  */
 import { useState } from "react";
@@ -23,6 +23,9 @@ import {
   Battery,
   HardHat,
   ArrowRight,
+  Network,
+  Cog,
+  BarChart3,
 } from "lucide-react";
 import AnimatedSection from "../AnimatedSection";
 import SectionTitle from "../SectionTitle";
@@ -38,58 +41,69 @@ const expertises = [
   {
     id: "ict",
     icon: Monitor,
-    title: "ICT",
+    title: "ICT & Réseaux",
     subtitle: "Infrastructure & Services Managés",
+    description:
+      "Conception, déploiement et gestion d'infrastructures IT complètes. Nous couvrons l'ensemble du cycle de vie : audit, design, installation, infogérance et support 24/7 avec des SLA contractuels.",
     image: ICT_IMG,
     color: "#0B3D6E",
     services: [
-      { icon: Printer, label: "MPS (Managed Print Services)" },
-      { icon: Server, label: "Infogérance complète" },
-      { icon: Cloud, label: "Solutions Cloud" },
-      { icon: ShieldCheck, label: "Cybersécurité" },
-      { icon: Cable, label: "Câblage structuré" },
+      { icon: Printer, label: "MPS (Managed Print Services)", detail: "Ricoh, Riso, Epson" },
+      { icon: Server, label: "Infogérance & Hébergement", detail: "Supervision proactive 24/7" },
+      { icon: Cloud, label: "Cloud & Virtualisation", detail: "VMware, Microsoft Azure" },
+      { icon: ShieldCheck, label: "Cybersécurité", detail: "Cisco, Fortinet" },
+      { icon: Cable, label: "Câblage structuré & Réseaux", detail: "LAN, WAN, WiFi" },
+      { icon: Network, label: "Réseaux & Télécoms", detail: "VoIP, Visioconférence" },
     ],
   },
   {
     id: "energy",
     icon: Zap,
     title: "Énergie",
-    subtitle: "Alimentation & Continuité",
+    subtitle: "Alimentation & Continuité de Service",
+    description:
+      "Solutions complètes de production et distribution d'énergie pour garantir la continuité de vos opérations. Maintenance préventive et corrective de groupes électrogènes et onduleurs.",
     image: ENERGY_IMG,
     color: "#C49535",
     services: [
-      { icon: BatteryCharging, label: "Groupes électrogènes" },
-      { icon: Battery, label: "Onduleurs (UPS)" },
-      { icon: Gauge, label: "Audits d'efficacité énergétique" },
-      { icon: FileSearch, label: "Maintenance préventive" },
+      { icon: BatteryCharging, label: "Groupes Électrogènes", detail: "Kohler — vente, installation, maintenance" },
+      { icon: Battery, label: "Onduleurs (UPS)", detail: "Protection des équipements critiques" },
+      { icon: Gauge, label: "Audits Énergétiques", detail: "Optimisation de la consommation" },
+      { icon: Cog, label: "Maintenance Préventive", detail: "Contrats SLA 98%+" },
+      { icon: BarChart3, label: "Supervision & Monitoring", detail: "Télésurveillance en temps réel" },
     ],
   },
   {
     id: "solar",
     icon: Sun,
     title: "Énergies Renouvelables",
-    subtitle: "Solaire & Stockage",
+    subtitle: "Solaire Photovoltaïque & Stockage",
+    description:
+      "Conception et réalisation de centrales solaires, solutions hybrides et micro-réseaux. Nous proposons des modèles EPC clé en main avec options de financement CAPEX ou OPEX.",
     image: SOLAR_IMG,
     color: "#5B7B3A",
     services: [
-      { icon: PanelTop, label: "Solaire photovoltaïque (PV)" },
-      { icon: Warehouse, label: "Micro-réseaux" },
-      { icon: Battery, label: "Stockage d'énergie" },
-      { icon: HardHat, label: "EPC avec financement" },
+      { icon: PanelTop, label: "Solaire Photovoltaïque", detail: "JinKO Solar, JA Solar" },
+      { icon: Warehouse, label: "Micro-réseaux & Hybride", detail: "Diesel-solaire, stockage" },
+      { icon: Battery, label: "Stockage d'Énergie", detail: "Huawei, SMA, Victron Energy" },
+      { icon: HardHat, label: "EPC Clé en Main", detail: "Étude, installation, mise en service" },
+      { icon: BarChart3, label: "Monitoring & O&M", detail: "Suivi de performance à distance" },
     ],
   },
   {
     id: "control",
     icon: ClipboardCheck,
-    title: "Contrôle Technique",
-    subtitle: "Inspection & Conformité",
+    title: "Contrôle Technique Lift",
+    subtitle: "Inspection & Conformité Ascenseurs",
+    description:
+      "Inspection réglementaire et contrôle technique des ascenseurs et équipements de levage selon les normes européennes EN 81-20/50. Partenariat avec Godifa Technologies.",
     image: null,
     color: "#0B3D6E",
     services: [
-      { icon: FileSearch, label: "Inspection ascenseurs" },
-      { icon: ShieldCheck, label: "Conformité EN 81-20/50" },
-      { icon: ClipboardCheck, label: "Audits sécurité" },
-      { icon: Gauge, label: "Rapports de conformité" },
+      { icon: FileSearch, label: "Inspection Ascenseurs", detail: "Contrôle périodique réglementaire" },
+      { icon: ShieldCheck, label: "Conformité EN 81-20/50", detail: "Normes européennes" },
+      { icon: ClipboardCheck, label: "Audits de Sécurité", detail: "Évaluation des risques" },
+      { icon: Gauge, label: "Rapports de Conformité", detail: "Documentation complète" },
     ],
   },
 ];
@@ -143,45 +157,51 @@ export default function ExpertisesSection() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
+              className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start"
             >
               {/* Image */}
-              <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[16/10]">
-                {active.image ? (
-                  <img
-                    src={active.image}
-                    alt={active.title}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-[#0B3D6E] to-[#0B3D6E]/80 flex items-center justify-center">
-                    <active.icon className="w-24 h-24 text-white/20" />
+              <div className="space-y-4">
+                <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[16/10]">
+                  {active.image ? (
+                    <img
+                      src={active.image}
+                      alt={active.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-[#0B3D6E] to-[#0B3D6E]/80 flex items-center justify-center">
+                      <active.icon className="w-24 h-24 text-white/20" />
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <span
+                      className="inline-block px-3 py-1 rounded-full text-white text-xs font-['Outfit'] font-semibold mb-2"
+                      style={{ backgroundColor: active.color }}
+                    >
+                      {active.title}
+                    </span>
+                    <h3 className="text-2xl text-white font-['Outfit'] font-bold">{active.subtitle}</h3>
                   </div>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <span
-                    className="inline-block px-3 py-1 rounded-full text-white text-xs font-['Outfit'] font-semibold mb-2"
-                    style={{ backgroundColor: active.color }}
-                  >
-                    {active.title}
-                  </span>
-                  <h3 className="text-2xl text-white">{active.subtitle}</h3>
                 </div>
+                {/* Description */}
+                <p className="text-[#0B3D6E]/70 text-sm leading-relaxed bg-white rounded-xl p-5 border border-[#D4A843]/10">
+                  {active.description}
+                </p>
               </div>
 
               {/* Services list */}
               <div>
-                <h3 className="text-2xl text-[#0B3D6E] mb-6">
+                <h3 className="text-xl text-[#0B3D6E] font-['Outfit'] font-bold mb-6">
                   Services {active.title}
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {active.services.map((service, i) => (
                     <motion.div
                       key={service.label}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.1 }}
+                      transition={{ delay: i * 0.08 }}
                       className="group flex items-center gap-4 p-4 bg-white rounded-xl border border-[#D4A843]/10 hover:border-[#D4A843]/30 hover:shadow-md transition-all"
                     >
                       <div
@@ -190,10 +210,13 @@ export default function ExpertisesSection() {
                       >
                         <service.icon className="w-5 h-5" style={{ color: active.color }} />
                       </div>
-                      <span className="text-[#0B3D6E] font-['Outfit'] font-medium">
-                        {service.label}
-                      </span>
-                      <ArrowRight className="w-4 h-4 text-[#D4A843] ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <div className="flex-1 min-w-0">
+                        <span className="text-[#0B3D6E] font-['Outfit'] font-medium text-sm block">
+                          {service.label}
+                        </span>
+                        <span className="text-[#0B3D6E]/50 text-xs">{service.detail}</span>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-[#D4A843] shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </motion.div>
                   ))}
                 </div>

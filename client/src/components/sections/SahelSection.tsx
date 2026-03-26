@@ -1,8 +1,9 @@
 /**
  * Teranga Flow - Sahel Section
  * Regional presence with map image, active countries, and deployment roadmap.
+ * Updated with full country list from PPTX presentation.
  */
-import { MapPin, Globe, TrendingUp, Leaf } from "lucide-react";
+import { MapPin, TrendingUp, Leaf } from "lucide-react";
 import AnimatedSection from "../AnimatedSection";
 import SectionTitle from "../SectionTitle";
 
@@ -10,15 +11,18 @@ const SAHEL_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/sahel-map-hXWYRv89h64NUB3Ho9VwFH.webp";
 
 const activeCountries = [
-  { name: "Sénégal", status: "Siège", active: true },
-  { name: "Gambie", status: "Actif", active: true },
-  { name: "Guinée", status: "Actif", active: true },
+  { name: "Sénégal", status: "Siège", flag: "🇸🇳" },
+  { name: "Gambie", status: "Actif", flag: "🇬🇲" },
+  { name: "Guinée", status: "Actif", flag: "🇬🇳" },
 ];
 
 const deployments = [
-  { name: "Mauritanie", status: "En cours", active: false },
-  { name: "Guinée-Bissau", status: "En cours", active: false },
-  { name: "Mali", status: "En cours", active: false },
+  { name: "Mali", status: "En cours", flag: "🇲🇱" },
+  { name: "Burkina Faso", status: "En cours", flag: "🇧🇫" },
+  { name: "Niger", status: "En cours", flag: "🇳🇪" },
+  { name: "Mauritanie", status: "En cours", flag: "🇲🇷" },
+  { name: "Guinée-Bissau", status: "Planifié", flag: "🇬🇼" },
+  { name: "Côte d'Ivoire", status: "Planifié", flag: "🇨🇮" },
 ];
 
 export default function SahelSection() {
@@ -76,7 +80,7 @@ export default function SahelSection() {
                       <div className="flex items-center gap-3">
                         <div className="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse" />
                         <span className="text-white font-['Outfit'] font-medium">
-                          {country.name}
+                          {country.flag} {country.name}
                         </span>
                       </div>
                       <span className="text-[#D4A843] text-sm font-['Outfit']">
@@ -104,7 +108,7 @@ export default function SahelSection() {
                       <div className="flex items-center gap-3">
                         <div className="w-2.5 h-2.5 rounded-full bg-[#D4A843]/60" />
                         <span className="text-white/80 font-['Outfit'] font-medium">
-                          {country.name}
+                          {country.flag} {country.name}
                         </span>
                       </div>
                       <span className="text-white/50 text-sm font-['Outfit']">
@@ -123,7 +127,7 @@ export default function SahelSection() {
                     Objectif 2028
                   </p>
                   <p className="text-white/60 text-sm leading-relaxed">
-                    Présence consolidée dans 6+ pays avec un impact ESG mesurable.
+                    Présence consolidée dans 6+ pays avec un impact ESG mesurable et un centre de formation technique régional.
                   </p>
                 </div>
               </div>
