@@ -38,9 +38,9 @@ const clients = [
     logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image205_5802c025.png",
   },
   {
-    name: "KAI",
+    name: "KAI NU DEM",
     sector: "Transport & Mobilité",
-    logo: null,
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/kai-nu-dem-logo_192e88c7.png",
   },
 ];
 
