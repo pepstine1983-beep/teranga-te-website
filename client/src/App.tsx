@@ -5,6 +5,7 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import { LayoutGroup } from "framer-motion";
 
 
 function Router() {
@@ -32,7 +33,9 @@ function App() {
       >
         <TooltipProvider>
           <Toaster />
-          <Router />
+          <LayoutGroup>
+            <Router />
+          </LayoutGroup>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

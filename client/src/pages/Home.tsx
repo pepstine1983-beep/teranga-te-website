@@ -1,25 +1,30 @@
-import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
-import { Streamdown } from 'streamdown';
-
 /**
- * All content in this page are only for example, replace with your own feature implementation
- * When building pages, remember your instructions in Frontend Best Practices, Design Guide and Common Pitfalls
+ * Teranga Flow Design - Home Page
+ * Assembles all sections into a single-page scrolling experience.
+ * Design: Organic Sahélien with warm golden/blue palette, fluid wave separators.
  */
-export default function Home() {
-  // If theme is switchable in App.tsx, we can implement theme toggling like this:
-  // const { theme, toggleTheme } = useTheme();
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import HeroSection from "@/components/sections/HeroSection";
+import AboutSection from "@/components/sections/AboutSection";
+import ExpertisesSection from "@/components/sections/ExpertisesSection";
+import ReferencesSection from "@/components/sections/ReferencesSection";
+import SahelSection from "@/components/sections/SahelSection";
+import ContactSection from "@/components/sections/ContactSection";
 
+export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
+      <Navbar />
       <main>
-        {/* Example: lucide-react for icons */}
-        <Loader2 className="animate-spin" />
-        Example Page
-        {/* Example: Streamdown for markdown rendering */}
-        <Streamdown>Any **markdown** content</Streamdown>
-        <Button variant="default">Example Button</Button>
+        <HeroSection />
+        <AboutSection />
+        <ExpertisesSection />
+        <ReferencesSection />
+        <SahelSection />
+        <ContactSection />
       </main>
+      <Footer />
     </div>
   );
 }
