@@ -96,8 +96,8 @@ const expertises = [
     title: "Contrôle Technique Lift",
     subtitle: "Inspection & Conformité Ascenseurs",
     description:
-      "Inspection réglementaire et contrôle technique des ascenseurs et équipements de levage selon les normes européennes EN 81-20/50. Partenariat avec Godifa Technologies.",
-    image: null,
+      "Inspection réglementaire et contrôle technique des ascenseurs et équipements de levage selon les normes européennes EN 81-20/50.",
+    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/inspection-ascenseurs_8f6624e3.png",
     color: "#0B3D6E",
     services: [
       { icon: FileSearch, label: "Inspection Ascenseurs", detail: "Contrôle périodique réglementaire" },
