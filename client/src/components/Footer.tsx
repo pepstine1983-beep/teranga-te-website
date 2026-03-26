@@ -18,6 +18,7 @@ const quickLinks = [
   { label: "Références", href: "#references" },
   { label: "Sahel", href: "#sahel" },
   { label: "Contact", href: "#contact" },
+  { label: "Carrières", href: "/carrieres" },
 ];
 
 export default function Footer() {

@@ -2,10 +2,12 @@
  * Teranga Flow Design - Navbar Component
  * Warm, organic navigation with golden accents and fluid transitions.
  * Sticky header with background blur on scroll.
+ * Supports both anchor links (home page) and route links (Careers).
  */
 import { useState, useEffect } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Users } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from "wouter";
 
 const navLinks = [
   { label: "Accueil", href: "#accueil" },
@@ -21,11 +23,14 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("accueil");
+  const [location] = useLocation();
+  const isHome = location === "/";
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
+      if (!isHome) return;
       // Detect active section
       const sections = navLinks.map((l) => l.href.replace("#", ""));
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -41,13 +46,20 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isHome]);
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
-    const el = document.getElementById(href.replace("#", ""));
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (href.startsWith("#")) {
+      if (isHome) {
+        const el = document.getElementById(href.replace("#", ""));
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      } else {
+        // Navigate to home page with anchor
+        window.location.href = "/" + href;
+      }
     }
   };
 
@@ -62,11 +74,7 @@ export default function Navbar() {
       <nav className="container flex items-center justify-between h-20 lg:h-24">
         {/* Logo */}
         <a
-          href="#accueil"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNavClick("#accueil");
-          }}
+          href="/"
           className="flex items-center gap-2 group"
         >
           <img
@@ -83,13 +91,15 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={isHome ? link.href : "/" + link.href}
               onClick={(e) => {
-                e.preventDefault();
-                handleNavClick(link.href);
+                if (isHome) {
+                  e.preventDefault();
+                  handleNavClick(link.href);
+                }
               }}
-              className={`relative px-4 py-2 text-sm font-['Outfit'] font-medium transition-colors rounded-full ${
-                activeSection === link.href.replace("#", "")
+              className={`relative px-3 py-2 text-sm font-['Outfit'] font-medium transition-colors rounded-full ${
+                isHome && activeSection === link.href.replace("#", "")
                   ? scrolled
                     ? "text-[#0B3D6E]"
                     : "text-white"
@@ -99,7 +109,7 @@ export default function Navbar() {
               }`}
             >
               {link.label}
-              {activeSection === link.href.replace("#", "") && (
+              {isHome && activeSection === link.href.replace("#", "") && (
                 <motion.div
                   layoutId="nav-indicator"
                   className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-[#D4A843] rounded-full"
@@ -108,15 +118,40 @@ export default function Navbar() {
               )}
             </a>
           ))}
+
+          {/* Carrières link */}
+          <a
+            href="/carrieres"
+            className={`relative px-3 py-2 text-sm font-['Outfit'] font-medium transition-colors rounded-full ${
+              !isHome
+                ? scrolled
+                  ? "text-[#0B3D6E]"
+                  : "text-white"
+                : scrolled
+                ? "text-[#0B3D6E]/70 hover:text-[#0B3D6E]"
+                : "text-white/80 hover:text-white"
+            }`}
+          >
+            Carrières
+            {!isHome && (
+              <motion.div
+                layoutId="nav-indicator"
+                className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-[#D4A843] rounded-full"
+                transition={{ type: "spring", stiffness: 350, damping: 30 }}
+              />
+            )}
+          </a>
         </div>
 
         {/* CTA + Mobile Toggle */}
         <div className="flex items-center gap-3">
           <a
-            href="#contact"
+            href={isHome ? "#contact" : "/#contact"}
             onClick={(e) => {
-              e.preventDefault();
-              handleNavClick("#contact");
+              if (isHome) {
+                e.preventDefault();
+                handleNavClick("#contact");
+              }
             }}
             className="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white text-sm font-['Outfit'] font-semibold rounded-full shadow-md hover:shadow-lg hover:scale-[1.02] transition-all"
           >
@@ -150,13 +185,17 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <a
                   key={link.href}
-                  href={link.href}
+                  href={isHome ? link.href : "/" + link.href}
                   onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
+                    if (isHome) {
+                      e.preventDefault();
+                      handleNavClick(link.href);
+                    } else {
+                      setMobileOpen(false);
+                    }
                   }}
                   className={`px-4 py-3 rounded-lg text-base font-['Outfit'] font-medium transition-colors ${
-                    activeSection === link.href.replace("#", "")
+                    isHome && activeSection === link.href.replace("#", "")
                       ? "bg-[#0B3D6E]/5 text-[#0B3D6E]"
                       : "text-[#0B3D6E]/70 hover:bg-[#0B3D6E]/5 hover:text-[#0B3D6E]"
                   }`}
@@ -164,11 +203,30 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
+
+              {/* Carrières mobile link */}
               <a
-                href="#contact"
+                href="/carrieres"
+                onClick={() => setMobileOpen(false)}
+                className={`px-4 py-3 rounded-lg text-base font-['Outfit'] font-medium transition-colors flex items-center gap-2 ${
+                  !isHome
+                    ? "bg-[#0B3D6E]/5 text-[#0B3D6E]"
+                    : "text-[#0B3D6E]/70 hover:bg-[#0B3D6E]/5 hover:text-[#0B3D6E]"
+                }`}
+              >
+                <Users className="w-4 h-4" />
+                Carrières
+              </a>
+
+              <a
+                href={isHome ? "#contact" : "/#contact"}
                 onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick("#contact");
+                  if (isHome) {
+                    e.preventDefault();
+                    handleNavClick("#contact");
+                  } else {
+                    setMobileOpen(false);
+                  }
                 }}
                 className="mt-2 flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white text-base font-['Outfit'] font-semibold rounded-full"
               >
