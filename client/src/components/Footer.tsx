@@ -2,7 +2,7 @@
  * Teranga Flow Design - Footer Component
  * Deep blue background with golden accents, organic wave top separator.
  */
-import { Phone, Mail, MapPin, ArrowUp } from "lucide-react";
+import { Phone, Mail, MapPin, ArrowUp, Globe } from "lucide-react";
 
 const expertises = [
   "ICT",
@@ -99,10 +99,7 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-[#D4A843] mt-0.5 shrink-0" />
-                <div className="text-sm">
-                  <p className="text-white/70">+221 33 843 59 27</p>
-                  <p className="text-white/70">+221 77 337 26 28</p>
-                </div>
+                <span className="text-white/70 text-sm">+221 77 337 26 28</span>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-[#D4A843] mt-0.5 shrink-0" />
@@ -113,6 +110,12 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#D4A843] mt-0.5 shrink-0" />
                 <span className="text-white/70 text-sm">3 Liberté 6 extension, Dakar</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Globe className="w-4 h-4 text-[#D4A843] mt-0.5 shrink-0" />
+                <a href="https://www.teranga-te.com" target="_blank" rel="noopener noreferrer" className="text-white/70 text-sm hover:text-white transition-colors">
+                  www.teranga-te.com
+                </a>
               </li>
             </ul>
           </div>

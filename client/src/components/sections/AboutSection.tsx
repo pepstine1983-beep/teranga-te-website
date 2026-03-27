@@ -218,7 +218,7 @@ export default function AboutSection() {
         {/* 4 Pillars */}
         <AnimatedSection>
           <h3 className="text-2xl text-[#0B3D6E] text-center font-['Outfit'] font-bold mb-10">
-            Nos 4 piliers de force
+            Les 4 piliers qui nous définissent
           </h3>
         </AnimatedSection>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -3,7 +3,7 @@
  * Contact form, coordinates, and CTA.
  */
 import { useState } from "react";
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, Globe } from "lucide-react";
 import { toast } from "sonner";
 import AnimatedSection from "../AnimatedSection";
 import SectionTitle from "../SectionTitle";
@@ -12,7 +12,7 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Téléphone",
-    values: ["+221 33 843 59 27", "+221 77 337 26 28"],
+    values: ["+221 77 337 26 28"],
   },
   {
     icon: Mail,
@@ -23,6 +23,11 @@ const contactInfo = [
     icon: MapPin,
     label: "Adresse",
     values: ["3 Liberté 6 extension, Dakar"],
+  },
+  {
+    icon: Globe,
+    label: "Site web",
+    values: ["www.teranga-te.com"],
   },
   {
     icon: Clock,
@@ -58,7 +63,7 @@ export default function ContactSection() {
         <SectionTitle
           label="Parlons de votre projet"
           title="Contactez-nous"
-          subtitle="Prenez rendez-vous, demandez un devis ou contactez-nous 24/7. Nous répondons sous 48h."
+          subtitle="Si vous avez besoin d'une offre, remplissez le formulaire ci-dessous en précisant quel type d'offre souhaiteriez-vous avoir en donnant le maximum d'informations sur votre besoin. Ensuite les équipes de Teranga vous contacteront dès que possible."
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
@@ -91,13 +96,13 @@ export default function ContactSection() {
                 <div className="flex items-center gap-2 p-3 bg-gradient-to-r from-[#D4A843]/10 to-transparent rounded-xl border border-[#D4A843]/20">
                   <CheckCircle className="w-4 h-4 text-[#D4A843]" />
                   <span className="text-[#0B3D6E] text-xs font-['Outfit'] font-medium">
-                    Devis gratuit
+                    Offre personnalisée
                   </span>
                 </div>
                 <div className="flex items-center gap-2 p-3 bg-gradient-to-r from-[#0B3D6E]/10 to-transparent rounded-xl border border-[#0B3D6E]/10">
                   <CheckCircle className="w-4 h-4 text-[#0B3D6E]" />
                   <span className="text-[#0B3D6E] text-xs font-['Outfit'] font-medium">
-                    Audit offert
+                    Audit sur demande
                   </span>
                 </div>
                 <div className="flex items-center gap-2 p-3 bg-gradient-to-r from-[#5B7B3A]/10 to-transparent rounded-xl border border-[#5B7B3A]/20 col-span-2">

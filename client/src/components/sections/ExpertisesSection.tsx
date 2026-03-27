@@ -1,6 +1,6 @@
 /**
  * Teranga Flow - Expertises Section
- * 4 expertise domains with image cards, detailed service lists, and enriched descriptions.
+ * 4 expertise domains with detailed sub-services, brand logos, and enriched descriptions.
  * Sand background with wave separators.
  */
 import { useState } from "react";
@@ -26,6 +26,16 @@ import {
   Network,
   Cog,
   BarChart3,
+  Laptop,
+  Wifi,
+  Thermometer,
+  Eye,
+  Flame,
+  Lock,
+  Lightbulb,
+  Smartphone,
+  Wrench,
+  CheckCircle,
 } from "lucide-react";
 import AnimatedSection from "../AnimatedSection";
 import SectionTitle from "../SectionTitle";
@@ -36,41 +46,117 @@ const ENERGY_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/expertise-energy-QxbZZfUAeoVkPzsMTwjhyn.webp";
 const SOLAR_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/expertise-solar-VHKtkagtzLM9gKGVKD772C.webp";
+const CONTROL_IMG =
+  "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/inspection-ascenseurs_8f6624e3.png";
 
 const expertises = [
   {
     id: "ict",
     icon: Monitor,
     title: "ICT",
-    subtitle: "Infrastructure & Services Managés",
+    subtitle: "Technologies de l'Information",
+    tagline: "Votre réseau ne s'arrête pas. Votre business non plus.",
     description:
-      "Conception, déploiement et gestion d'infrastructures IT complètes. Nous couvrons l'ensemble du cycle de vie : audit, design, installation, infogérance et support 24/7 avec des SLA contractuels.",
+      "Des infrastructures robustes pour une entreprise connectée et performante. Conception, déploiement et gestion d'infrastructures IT complètes avec des SLA contractuels et un support 24/7.",
     image: ICT_IMG,
     color: "#0B3D6E",
-    services: [
-      { icon: Printer, label: "MPS (Managed Print Services)", detail: "Ricoh, Riso, Epson" },
-      { icon: Server, label: "Infogérance & Hébergement", detail: "Supervision proactive 24/7" },
-      { icon: Cloud, label: "Cloud & Virtualisation", detail: "VMware, Microsoft Azure" },
-      { icon: ShieldCheck, label: "Cybersécurité", detail: "Cisco, Fortinet" },
-      { icon: Cable, label: "Câblage structuré & Réseaux", detail: "LAN, WAN, WiFi" },
-      { icon: Network, label: "Réseaux & Télécoms", detail: "VoIP, Visioconférence" },
+    subSections: [
+      {
+        title: "MPS (Managed Print Services)",
+        icon: Printer,
+        items: [
+          "Modèles CAPEX ou OPEX selon vos besoins",
+          "Imprimantes multifonctions, scanners, imprimantes de production",
+          "Maintenance avec ou sans pièces de rechange",
+          "Leasing : solution complète avec engagement de résultats",
+        ],
+        brands: "Ricoh, Epson, Riso",
+      },
+      {
+        title: "Postes de travail & Serveurs",
+        icon: Laptop,
+        items: [
+          "Postes de travail : Dell, HP, Lenovo",
+          "Serveurs : Dell, HP, IBM",
+          "Modèle OPEX : packages sur mesure avec engagement de résultats",
+        ],
+        brands: "Dell, HP, Lenovo, IBM",
+      },
+      {
+        title: "Réseaux & Sécurité",
+        icon: ShieldCheck,
+        items: [
+          "Câblage structuré cuivre (câblage internet)",
+          "Matériel réseau : fourniture, installation, maintenance",
+          "Sécurité réseau : protection et surveillance",
+        ],
+        brands: "Cisco, Fortinet, Ubiquiti",
+      },
+      {
+        title: "Cloud, Virtualisation & Infogérance",
+        icon: Cloud,
+        items: [
+          "Support & Helpdesk — supervision proactive 24/7",
+          "Cloud & Virtualisation (VMware, Microsoft Azure)",
+          "Cybersécurité : protection & conformité",
+        ],
+        brands: "Microsoft, VMware",
+      },
     ],
   },
   {
     id: "energy",
     icon: Zap,
     title: "Énergie",
-    subtitle: "Alimentation & Continuité de Service",
+    subtitle: "CFO, CFA & CVC",
+    tagline: "Garantir la continuité de vos opérations, en toute sécurité.",
     description:
-      "Solutions complètes de production et distribution d'énergie pour garantir la continuité de vos opérations. Maintenance préventive et corrective de groupes électrogènes et onduleurs.",
+      "Solutions complètes de production, distribution et sécurisation d'énergie. Audit énergétique, courant fort, courant faible, climatisation — un seul interlocuteur pour toute votre infrastructure.",
     image: ENERGY_IMG,
     color: "#C49535",
-    services: [
-      { icon: BatteryCharging, label: "Groupes Électrogènes", detail: "Kohler — vente, installation, maintenance" },
-      { icon: Battery, label: "Onduleurs (UPS)", detail: "Protection des équipements critiques" },
-      { icon: Gauge, label: "Audits Énergétiques", detail: "Optimisation de la consommation" },
-      { icon: Cog, label: "Maintenance Préventive", detail: "Contrats SLA 98%+" },
-      { icon: BarChart3, label: "Supervision & Monitoring", detail: "Télésurveillance en temps réel" },
+    subSections: [
+      {
+        title: "CFO (Courant Fort)",
+        icon: BatteryCharging,
+        items: [
+          "Onduleurs (UPS), Groupes électrogènes",
+          "Inverseurs, Régulateurs de tension",
+          "Câblage, TGBT",
+          "Maintenance préventive et corrective",
+        ],
+        brands: "GE, Pramac, Kohler, Generac, APC, Eaton, Schneider, Socomec, Cummins, FG Wilson, Himoinsa",
+      },
+      {
+        title: "CFA (Courant Faible)",
+        icon: Eye,
+        items: [
+          "Contrôle d'accès",
+          "Détection incendie",
+          "Vidéosurveillance, anti-intrusion",
+          "Câblage CFA, sécurité physique et logique",
+        ],
+        brands: "Honeywell, Hikvision",
+      },
+      {
+        title: "CVC (Climatisation & Ventilation)",
+        icon: Thermometer,
+        items: [
+          "Climatiseurs, groupes froids",
+          "Armoires de refroidissement",
+          "Installation et maintenance",
+        ],
+        brands: "",
+      },
+      {
+        title: "Audit Énergétique",
+        icon: Gauge,
+        items: [
+          "Analyse des consommations et ROI",
+          "Supervision & monitoring en temps réel",
+          "Modèle OPEX : packages sur mesure",
+        ],
+        brands: "",
+      },
     ],
   },
   {
@@ -78,16 +164,52 @@ const expertises = [
     icon: Sun,
     title: "Énergies Renouvelables",
     subtitle: "Solaire Photovoltaïque & Stockage",
+    tagline: "L'énergie du soleil au service de votre croissance.",
     description:
-      "Conception et réalisation de centrales solaires, solutions hybrides et micro-réseaux. Nous proposons des modèles EPC clé en main avec options de financement CAPEX ou OPEX.",
+      "Conception et réalisation de centrales solaires, solutions hybrides et micro-réseaux. Modèles EPC clé en main avec options de financement CAPEX ou OPEX (Tiers-Investisseur).",
     image: SOLAR_IMG,
     color: "#5B7B3A",
-    services: [
-      { icon: PanelTop, label: "Solaire Photovoltaïque", detail: "JinKO Solar, JA Solar" },
-      { icon: Warehouse, label: "Micro-réseaux & Hybride", detail: "Diesel-solaire, stockage" },
-      { icon: Battery, label: "Stockage d'Énergie", detail: "Huawei, SMA, Victron Energy" },
-      { icon: HardHat, label: "EPC Clé en Main", detail: "Étude, installation, mise en service" },
-      { icon: BarChart3, label: "Monitoring & O&M", detail: "Suivi de performance à distance" },
+    subSections: [
+      {
+        title: "Solaire Photovoltaïque",
+        icon: PanelTop,
+        items: [
+          "On-Grid, Off-Grid, Hybride",
+          "EPC clé en main : étude, fourniture, installation, formation",
+          "EPC + Financement : modèle Tiers-Investisseur (OPEX)",
+        ],
+        brands: "JA Solar, Jinko, Longi",
+      },
+      {
+        title: "Solar Home System",
+        icon: Smartphone,
+        items: [
+          "Kits modulaires pour zones rurales",
+          "Paiement mobile intégré",
+          "Monitoring à distance",
+        ],
+        brands: "",
+      },
+      {
+        title: "Stockage & Micro-réseaux",
+        icon: Battery,
+        items: [
+          "Batteries Li-ion, EMS/BMS intelligents",
+          "Monitoring IoT 24/7",
+          "Applications : data centers, télécoms, éclairage public, agro-industrie",
+        ],
+        brands: "Huawei, SMA, Victron",
+      },
+      {
+        title: "EPC & Maintenance",
+        icon: HardHat,
+        items: [
+          "Projets EPC clé en main",
+          "Suivi de performance à distance",
+          "Opération & Maintenance (O&M)",
+        ],
+        brands: "",
+      },
     ],
   },
   {
@@ -95,15 +217,34 @@ const expertises = [
     icon: ClipboardCheck,
     title: "Contrôle Technique Lift",
     subtitle: "Inspection & Conformité Ascenseurs",
+    tagline: "La sécurité de vos ascenseurs, notre priorité.",
     description:
-      "Inspection réglementaire et contrôle technique des ascenseurs et équipements de levage selon les normes européennes EN 81-20/50.",
-    image: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/inspection-ascenseurs_8f6624e3.png",
+      "Inspection réglementaire et contrôle technique des ascenseurs et équipements de levage selon les normes européennes EN 81-20/50. Organisme agréé avec couverture nationale et régionale.",
+    image: CONTROL_IMG,
     color: "#0B3D6E",
-    services: [
-      { icon: FileSearch, label: "Inspection Ascenseurs", detail: "Contrôle périodique réglementaire" },
-      { icon: ShieldCheck, label: "Conformité EN 81-20/50", detail: "Normes européennes" },
-      { icon: ClipboardCheck, label: "Audits de Sécurité", detail: "Évaluation des risques" },
-      { icon: Gauge, label: "Rapports de Conformité", detail: "Documentation complète" },
+    subSections: [
+      {
+        title: "Services Certifiés",
+        icon: FileSearch,
+        items: [
+          "Inspection de mise en service",
+          "Contrôles périodiques : conformité EN 81-20/50",
+          "Audits de sécurité : diagnostics et recommandations",
+          "Registre national & reporting réglementaire",
+        ],
+        brands: "",
+      },
+      {
+        title: "Nos Engagements",
+        icon: CheckCircle,
+        items: [
+          "Organisme agréé",
+          "Rapports sous 48h",
+          "Techniciens certifiés",
+          "Couverture nationale et régionale",
+        ],
+        brands: "",
+      },
     ],
   },
 ];
@@ -125,7 +266,7 @@ export default function ExpertisesSection() {
         <div className="container py-4">
           <SectionTitle
             label="Nos services"
-            title="Nos Expertises"
+            title="Nos 4 Domaines d'Expertise"
             subtitle="Des solutions intégrées couvrant l'ensemble du cycle de vie technologique et énergétique de vos infrastructures critiques."
           />
 
@@ -157,79 +298,90 @@ export default function ExpertisesSection() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start"
             >
-              {/* Image */}
-              <div className="space-y-4">
-                <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[16/10]">
-                  {active.image ? (
-                    <img
-                      src={active.image}
-                      alt={active.title}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-[#0B3D6E] to-[#0B3D6E]/80 flex items-center justify-center">
-                      <active.icon className="w-24 h-24 text-white/20" />
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <span
-                      className="inline-block px-3 py-1 rounded-full text-white text-xs font-['Outfit'] font-semibold mb-2"
-                      style={{ backgroundColor: active.color }}
-                    >
-                      {active.title}
-                    </span>
-                    <h3 className="text-2xl text-white font-['Outfit'] font-bold">{active.subtitle}</h3>
-                  </div>
+              {/* Hero banner with image */}
+              <div className="relative rounded-2xl overflow-hidden shadow-xl mb-8 aspect-[21/8]">
+                <img
+                  src={active.image}
+                  alt={active.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                  <span
+                    className="inline-block px-3 py-1 rounded-full text-white text-xs font-['Outfit'] font-semibold mb-2"
+                    style={{ backgroundColor: active.color }}
+                  >
+                    {active.title}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl text-white font-['Outfit'] font-bold mb-1">
+                    {active.subtitle}
+                  </h3>
+                  <p className="text-white/80 italic text-sm md:text-base font-['DM_Serif_Display']">
+                    "{active.tagline}"
+                  </p>
                 </div>
-                {/* Description */}
-                <p className="text-[#0B3D6E]/70 text-sm leading-relaxed bg-white rounded-xl p-5 border border-[#D4A843]/10">
+              </div>
+
+              {/* Description */}
+              <div className="bg-white rounded-xl p-5 border border-[#D4A843]/10 mb-8">
+                <p className="text-[#0B3D6E]/80 text-sm md:text-base leading-relaxed">
                   {active.description}
                 </p>
               </div>
 
-              {/* Services list */}
-              <div>
-                <h3 className="text-xl text-[#0B3D6E] font-['Outfit'] font-bold mb-6">
-                  Services {active.title}
-                </h3>
-                <div className="space-y-3">
-                  {active.services.map((service, i) => (
-                    <motion.div
-                      key={service.label}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.08 }}
-                      className="group flex items-center gap-4 p-4 bg-white rounded-xl border border-[#D4A843]/10 hover:border-[#D4A843]/30 hover:shadow-md transition-all"
-                    >
+              {/* Sub-sections grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
+                {active.subSections.map((sub, i) => (
+                  <motion.div
+                    key={sub.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="bg-white rounded-xl p-5 border border-[#D4A843]/10 hover:border-[#D4A843]/30 hover:shadow-md transition-all"
+                  >
+                    <div className="flex items-center gap-3 mb-4">
                       <div
                         className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
                         style={{ backgroundColor: `${active.color}15` }}
                       >
-                        <service.icon className="w-5 h-5" style={{ color: active.color }} />
+                        <sub.icon className="w-5 h-5" style={{ color: active.color }} />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <span className="text-[#0B3D6E] font-['Outfit'] font-medium text-sm block">
-                          {service.label}
+                      <h4 className="text-[#0B3D6E] font-['Outfit'] font-bold text-base">
+                        {sub.title}
+                      </h4>
+                    </div>
+                    <ul className="space-y-2 mb-3">
+                      {sub.items.map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-sm text-[#0B3D6E]/70">
+                          <span className="text-[#D4A843] mt-0.5 shrink-0">&#10003;</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    {sub.brands && (
+                      <div className="pt-3 border-t border-[#D4A843]/10">
+                        <span className="text-xs font-['Outfit'] font-semibold text-[#D4A843] uppercase tracking-wider">
+                          Marques :
                         </span>
-                        <span className="text-[#0B3D6E]/50 text-xs">{service.detail}</span>
+                        <span className="text-xs text-[#0B3D6E]/60 ml-2">{sub.brands}</span>
                       </div>
-                      <ArrowRight className="w-4 h-4 text-[#D4A843] shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </motion.div>
-                  ))}
-                </div>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
 
+              {/* CTA */}
+              <div className="text-center">
                 <a
                   href="#contact"
                   onClick={(e) => {
                     e.preventDefault();
                     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="inline-flex items-center gap-2 mt-8 px-6 py-3 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white font-['Outfit'] font-semibold rounded-full shadow-md hover:shadow-lg hover:scale-[1.02] transition-all"
+                  className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white font-['Outfit'] font-semibold rounded-full shadow-md hover:shadow-lg hover:scale-[1.02] transition-all"
                 >
-                  Demander un devis
+                  Demander une offre
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
