@@ -86,11 +86,21 @@ const expertises = [
         title: "Réseaux & Sécurité",
         icon: ShieldCheck,
         items: [
-          "Câblage structuré cuivre (câblage internet)",
           "Matériel réseau : fourniture, installation, maintenance",
           "Sécurité réseau : protection et surveillance",
+          "Firewalls, switches, points d'accès Wi-Fi",
         ],
         brands: "Cisco, Fortinet, Ubiquiti",
+      },
+      {
+        title: "Câblage Réseau",
+        icon: Cable,
+        items: [
+          "Câblage structuré cuivre et fibre optique",
+          "Baies de brassage, chemins de câbles",
+          "Certification et recette des installations",
+        ],
+        brands: "Legrand, Nexans, Belden",
       },
       {
         title: "Cloud, Virtualisation & Infogérance",
@@ -135,7 +145,7 @@ const expertises = [
           "Vidéosurveillance, anti-intrusion",
           "Câblage CFA, sécurité physique et logique",
         ],
-        brands: "Honeywell, Hikvision",
+        brands: "Honeywell, Hikvision, Axis, Vivotek, Paradox, Texecom, Siemens, Esser",
       },
       {
         title: "CVC (Climatisation & Ventilation)",
@@ -145,7 +155,7 @@ const expertises = [
           "Armoires de refroidissement",
           "Installation et maintenance",
         ],
-        brands: "",
+        brands: "Daikin, Carrier, Airwell, Lennox",
       },
       {
         title: "Audit Énergétique",
@@ -166,7 +176,7 @@ const expertises = [
     subtitle: "Solaire Photovoltaïque & Stockage",
     tagline: "L'énergie du soleil au service de votre croissance.",
     description:
-      "Conception et réalisation de centrales solaires, solutions hybrides et micro-réseaux. Modèles EPC clé en main avec options de financement CAPEX ou OPEX (Tiers-Investisseur).",
+      "Conception et réalisation de centrales solaires, solutions hybrides et micro-réseaux. Modèles EPC clé en main avec options de financement CAPEX ou OPEX (Tiers-Investisseur). Notre offre intègre une solution de monitoring énergétique permettant de suivre en temps réel la consommation globale et par équipement, avec un reporting automatisé incluant le TOP 5 des équipements les plus énergivores.",
     image: SOLAR_IMG,
     color: "#5B7B3A",
     subSections: [
@@ -185,10 +195,21 @@ const expertises = [
         icon: Smartphone,
         items: [
           "Kits modulaires pour zones rurales",
-          "Paiement mobile intégré",
+          "Paiement mobile intégré (Pay-as-you-go)",
           "Monitoring à distance",
         ],
-        brands: "",
+        brands: "Victron Energy, Bboxx, Mobisol, Schneider Electric",
+      },
+      {
+        title: "Monitoring & Reporting Énergétique",
+        icon: BarChart3,
+        items: [
+          "Suivi en temps réel de la consommation globale et par équipement",
+          "Reporting automatisé : TOP 5 des équipements les plus énergivores",
+          "Optimisation des coûts et détection des anomalies",
+          "Tableaux de bord personnalisés pour le client",
+        ],
+        brands: "Fronius, Huawei, SMA, SolarEdge, Meteocontrol, Victron",
       },
       {
         title: "Stockage & Micro-réseaux",

@@ -49,9 +49,9 @@ export default function HeroSection() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-6"
           >
-            De l'Énergie au{" "}
+            De l'énergie au{" "}
             <span className="text-[#D4A843]">Numérique</span>, nous
-            transformons votre avenir
+            transformons ensemble votre avenir
           </motion.h1>
 
           {/* Subtitle */}
@@ -81,7 +81,7 @@ export default function HeroSection() {
               }}
               className="group flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white font-['Outfit'] font-semibold rounded-full shadow-lg shadow-[#D4A843]/25 hover:shadow-xl hover:shadow-[#D4A843]/30 hover:scale-[1.03] transition-all"
             >
-              Devis gratuit en 48h
+              Contactez-nous
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a

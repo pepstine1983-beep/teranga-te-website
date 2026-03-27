@@ -88,6 +88,29 @@ const partnerCategories = [
     partners: [
       { name: "Honeywell", logo: "" },
       { name: "Hikvision", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/hikvision-logo_fa1182e0.png" },
+      { name: "Axis", logo: "" },
+      { name: "Vivotek", logo: "" },
+      { name: "Paradox", logo: "" },
+      { name: "Texecom", logo: "" },
+      { name: "Siemens", logo: "" },
+      { name: "Esser", logo: "" },
+    ],
+  },
+  {
+    category: "Énergie — CVC (Climatisation & Ventilation)",
+    partners: [
+      { name: "Daikin", logo: "" },
+      { name: "Carrier", logo: "" },
+      { name: "Airwell", logo: "" },
+      { name: "Lennox", logo: "" },
+    ],
+  },
+  {
+    category: "Câblage Réseau",
+    partners: [
+      { name: "Legrand", logo: "" },
+      { name: "Nexans", logo: "" },
+      { name: "Belden", logo: "" },
     ],
   },
   {
@@ -99,6 +122,26 @@ const partnerCategories = [
       { name: "Huawei", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image188_8c88e19f.png" },
       { name: "SMA", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image189_9679846e.png" },
       { name: "Victron Energy", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image187_84633471.png" },
+    ],
+  },
+  {
+    category: "Solar Home System",
+    partners: [
+      { name: "Victron Energy", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image187_84633471.png" },
+      { name: "Bboxx", logo: "" },
+      { name: "Mobisol", logo: "" },
+      { name: "Schneider Electric", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/schneider-logo_11a20a22.png" },
+    ],
+  },
+  {
+    category: "Monitoring Énergétique",
+    partners: [
+      { name: "Fronius", logo: "" },
+      { name: "Huawei", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image188_8c88e19f.png" },
+      { name: "SMA", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image189_9679846e.png" },
+      { name: "SolarEdge", logo: "" },
+      { name: "Meteocontrol", logo: "" },
+      { name: "Victron", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image187_84633471.png" },
     ],
   },
 ];

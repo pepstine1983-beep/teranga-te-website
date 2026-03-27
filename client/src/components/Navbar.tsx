@@ -156,7 +156,7 @@ export default function Navbar() {
             className="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white text-sm font-['Outfit'] font-semibold rounded-full shadow-md hover:shadow-lg hover:scale-[1.02] transition-all"
           >
             <Phone className="w-4 h-4" />
-            Devis gratuit
+            Contactez-nous
           </a>
 
           <button
@@ -231,7 +231,7 @@ export default function Navbar() {
                 className="mt-2 flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white text-base font-['Outfit'] font-semibold rounded-full"
               >
                 <Phone className="w-4 h-4" />
-                Devis gratuit
+                Contactez-nous
               </a>
             </div>
           </motion.div>

@@ -152,7 +152,7 @@ export default function OffresSection() {
                       : "bg-[#0B3D6E]/5 text-[#0B3D6E] hover:bg-[#0B3D6E]/10"
                   }`}
                 >
-                  Devis gratuit
+                  Demander une offre
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
