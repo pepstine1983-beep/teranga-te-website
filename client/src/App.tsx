@@ -8,6 +8,7 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import Home from "./pages/Home";
 import Careers from "./pages/Careers";
 import { LayoutGroup } from "framer-motion";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 
 function Router() {
@@ -32,6 +33,7 @@ function App() {
             <LayoutGroup>
               <Router />
             </LayoutGroup>
+            <WhatsAppButton />
           </TooltipProvider>
         </LanguageProvider>
       </ThemeProvider>
