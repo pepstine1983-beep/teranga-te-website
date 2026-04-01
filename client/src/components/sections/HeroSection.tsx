@@ -74,25 +74,15 @@ export default function HeroSection() {
             className="flex flex-wrap gap-4 mb-14"
           >
             <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="group flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white font-['Outfit'] font-semibold rounded-full shadow-lg shadow-[#D4A843]/25 hover:shadow-xl hover:shadow-[#D4A843]/30 hover:scale-[1.03] transition-all"
-            >
-              {t.hero.ctaPrimary}
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
               href="#expertises"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById("expertises")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="flex items-center gap-2 px-7 py-3.5 bg-white/10 backdrop-blur-md text-white font-['Outfit'] font-semibold rounded-full border border-white/25 hover:bg-white/20 transition-all"
+              className="group flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white font-['Outfit'] font-semibold rounded-full shadow-lg shadow-[#D4A843]/25 hover:shadow-xl hover:shadow-[#D4A843]/30 hover:scale-[1.03] transition-all"
             >
               {t.hero.ctaSecondary}
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
 
