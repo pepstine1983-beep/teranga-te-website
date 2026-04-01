@@ -101,12 +101,10 @@ export default function OffresSection() {
                   <formula.icon className="w-6 h-6" style={{ color: formula.color }} />
                 </div>
 
-                <h4 className="font-['Outfit'] font-bold text-[#0B3D6E] text-xl mb-1">
+                <h4 className="font-['Outfit'] font-bold text-[#0B3D6E] text-xl mb-5">
                   {formula.name}
                 </h4>
-                <p className="text-[#0B3D6E]/50 text-xs font-['Outfit'] font-medium mb-5">
-                  {formula.target}
-                </p>
+
 
                 <ul className="space-y-3 flex-1">
                   {formula.features.map((feat) => (
