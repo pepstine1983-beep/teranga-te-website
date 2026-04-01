@@ -6,6 +6,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/sections/HeroSection";
+import KeyFiguresSection from "@/components/sections/KeyFiguresSection";
 import AboutSection from "@/components/sections/AboutSection";
 import ExpertisesSection from "@/components/sections/ExpertisesSection";
 import OffresSection from "@/components/sections/OffresSection";
@@ -19,6 +20,7 @@ export default function Home() {
       <Navbar />
       <main>
         <HeroSection />
+        <KeyFiguresSection />
         <AboutSection />
         <ExpertisesSection />
         <OffresSection />
