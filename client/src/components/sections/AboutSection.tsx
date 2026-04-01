@@ -8,7 +8,7 @@ import SectionTitle from "../SectionTitle";
 import CounterAnimation from "../CounterAnimation";
 
 const MD_PHOTO =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/md-papa-moussa-tine_afce5590.png";
+  "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/PHOTO-2026-03-31-12-32-49_c13313d5.jpg";
 
 const pillars = [
   {
@@ -162,12 +162,18 @@ export default function AboutSection() {
                   </p>
 
                   {/* Stats */}
-                  <div className="grid grid-cols-3 gap-4">
+                    <div className="grid grid-cols-4 gap-4">
                     <div className="text-center">
                       <div className="text-2xl font-[Outfit] font-bold text-[#D4A843]">
-                        <CounterAnimation target={6} suffix="+" />
+                        <CounterAnimation target={6} suffix="" />
                       </div>
-                      <span className="text-white/60 text-xs font-['Outfit']">Pays</span>
+                      <span className="text-white/60 text-xs font-['Outfit']">Collaborateurs</span>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl font-[Outfit] font-bold text-[#D4A843]">
+                        <CounterAnimation target={8} suffix="" />
+                      </div>
+                      <span className="text-white/60 text-xs font-['Outfit']">Clients</span>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-[Outfit] font-bold text-[#D4A843]">

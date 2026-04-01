@@ -42,6 +42,11 @@ const clients = [
     sector: "Transport & Mobilité",
     logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/kai-nu-dem-logo_192e88c7.png",
   },
+  {
+    name: "KPMG Sénégal",
+    sector: "Audit & Conseil",
+    logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/s4TCDTV7TKKT_725f6646.png",
+  },
 ];
 
 const partnerCategories = [
@@ -81,6 +86,7 @@ const partnerCategories = [
       { name: "Eaton", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/eaton-logo_0e601af6.png" },
       { name: "Schneider Electric", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/schneider-logo_11a20a22.png" },
       { name: "Socomec", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/socomec-logo_bd0ddfb9.png" },
+      { name: "Eneria", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/pasted_file_R5hNKK_image_d1246687.png" },
     ],
   },
   {

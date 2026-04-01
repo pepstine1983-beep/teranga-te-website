@@ -41,7 +41,7 @@ export default function Footer() {
           <div>
             <div className="mb-5">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image242_b3ec7ebf.png"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/logo_teranga-1_2298ef91.png"
                 alt="Teranga Technology & Energy"
                 className="h-16 w-auto object-contain"
               />
@@ -99,7 +99,10 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-[#D4A843] mt-0.5 shrink-0" />
+                <div className="flex flex-col gap-1">
                 <span className="text-white/70 text-sm">+221 77 337 26 28</span>
+                <span className="text-white/70 text-sm">+221 33 843 59 27</span>
+              </div>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-[#D4A843] mt-0.5 shrink-0" />

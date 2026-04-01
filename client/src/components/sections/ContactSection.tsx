@@ -12,7 +12,7 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Téléphone",
-    values: ["+221 77 337 26 28"],
+    values: ["+221 77 337 26 28", "+221 33 843 59 27"],
   },
   {
     icon: Mail,

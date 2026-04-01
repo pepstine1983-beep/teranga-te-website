@@ -78,7 +78,7 @@ export default function Navbar() {
           className="flex items-center gap-2 group"
         >
           <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image242_b3ec7ebf.png"
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/logo_teranga-1_2298ef91.png"
             alt="Teranga Technology & Energy"
             className={`h-14 lg:h-16 w-auto object-contain transition-all rounded-lg px-2 py-1 ${
               scrolled ? "" : "bg-white/90 backdrop-blur-sm shadow-sm"

@@ -134,7 +134,7 @@ const expertises = [
           "Câblage, TGBT",
           "Maintenance préventive et corrective",
         ],
-        brands: "GE, Pramac, Kohler, Generac, APC, Eaton, Schneider, Socomec, Cummins, FG Wilson, Himoinsa",
+        brands: "GE, Pramac, Kohler, Generac, APC, Eaton, Schneider, Socomec, Cummins, FG Wilson, Himoinsa, Eneria",
       },
       {
         title: "CFA (Courant Faible)",
