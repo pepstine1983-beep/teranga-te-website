@@ -1,12 +1,15 @@
 /**
  * Teranga Flow - Contact Section
- * Contact form, coordinates, and CTA.
+ * Contact form, coordinates, interactive map, and CTA.
  */
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, Globe } from "lucide-react";
 import { toast } from "sonner";
 import AnimatedSection from "../AnimatedSection";
 import SectionTitle from "../SectionTitle";
+import { MapView } from "../Map";
+
+const TERANGA_COORDS = { lat: 14.7167, lng: -17.4677 };
 
 const contactInfo = [
   {
@@ -45,16 +48,45 @@ export default function ContactSection() {
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
+  const mapRef = useRef<google.maps.Map | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
     setSubmitted(true);
     toast.success("Votre message a été envoyé avec succès !");
     setTimeout(() => {
       setSubmitted(false);
       setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
     }, 3000);
+  };
+
+  const handleMapReady = (map: google.maps.Map) => {
+    mapRef.current = map;
+
+    // Add a marker at Teranga TE location
+    const marker = new google.maps.marker.AdvancedMarkerElement({
+      map,
+      position: TERANGA_COORDS,
+      title: "Teranga Technology & Energy",
+    });
+
+    // Add info window
+    const infoWindow = new google.maps.InfoWindow({
+      content: `
+        <div style="padding: 8px 12px; font-family: 'Outfit', sans-serif; max-width: 240px;">
+          <h3 style="margin: 0 0 4px 0; font-size: 14px; font-weight: 600; color: #0B3D6E;">Teranga Technology & Energy</h3>
+          <p style="margin: 0 0 2px 0; font-size: 12px; color: #555;">3 Liberté 6 extension, Dakar, Sénégal</p>
+          <p style="margin: 0; font-size: 12px; color: #D4A843; font-weight: 500;">+221 77 337 26 28</p>
+        </div>
+      `,
+    });
+
+    marker.addListener("click", () => {
+      infoWindow.open({ anchor: marker, map });
+    });
+
+    // Open info window by default
+    infoWindow.open({ anchor: marker, map });
   };
 
   return (
@@ -219,6 +251,26 @@ export default function ContactSection() {
             </form>
           </AnimatedSection>
         </div>
+
+        {/* Interactive Map */}
+        <AnimatedSection direction="up" className="mt-14">
+          <div className="relative rounded-2xl overflow-hidden border border-[#D4A843]/15 shadow-lg">
+            {/* Map header bar */}
+            <div className="bg-gradient-to-r from-[#0B3D6E] to-[#0B3D6E]/90 px-6 py-3 flex items-center gap-3">
+              <MapPin className="w-5 h-5 text-[#D4A843]" />
+              <span className="font-['Outfit'] font-semibold text-white text-sm">
+                Notre localisation — 3 Liberté 6 extension, Dakar, Sénégal
+              </span>
+            </div>
+            {/* Google Map */}
+            <MapView
+              className="h-[400px] md:h-[450px]"
+              initialCenter={TERANGA_COORDS}
+              initialZoom={16}
+              onMapReady={handleMapReady}
+            />
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );
