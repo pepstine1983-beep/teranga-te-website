@@ -1,31 +1,34 @@
 /**
  * Teranga Flow - Sahel Section
  * Regional presence with map image, active countries, and deployment roadmap.
- * Updated with full country list from PPTX presentation.
  */
+import { useMemo } from "react";
 import { MapPin, TrendingUp, Leaf } from "lucide-react";
 import AnimatedSection from "../AnimatedSection";
 import SectionTitle from "../SectionTitle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const SAHEL_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/sahel-map-hXWYRv89h64NUB3Ho9VwFH.webp";
 
-const activeCountries = [
-  { name: "Sénégal", status: "Siège", flag: "🇸🇳" },
-  { name: "Gambie", status: "Actif", flag: "🇬🇲" },
-  { name: "Guinée", status: "Actif", flag: "🇬🇳" },
-];
-
-const deployments = [
-  { name: "Mali", status: "En cours", flag: "🇲🇱" },
-  { name: "Burkina Faso", status: "En cours", flag: "🇧🇫" },
-  { name: "Niger", status: "En cours", flag: "🇳🇪" },
-  { name: "Mauritanie", status: "En cours", flag: "🇲🇷" },
-  { name: "Guinée-Bissau", status: "Planifié", flag: "🇬🇼" },
-  { name: "Côte d'Ivoire", status: "Planifié", flag: "🇨🇮" },
-];
-
 export default function SahelSection() {
+  const { language, t } = useLanguage();
+
+  const activeCountries = useMemo(() => [
+    { name: language === "fr" ? "Sénégal" : "Senegal", status: language === "fr" ? "Siège" : "Headquarters", flag: "🇸🇳" },
+    { name: language === "fr" ? "Gambie" : "Gambia", status: language === "fr" ? "Actif" : "Active", flag: "🇬🇲" },
+    { name: language === "fr" ? "Guinée" : "Guinea", status: language === "fr" ? "Actif" : "Active", flag: "🇬🇳" },
+  ], [language]);
+
+  const deployments = useMemo(() => [
+    { name: language === "fr" ? "Mali" : "Mali", status: language === "fr" ? "En cours" : "In progress", flag: "🇲🇱" },
+    { name: language === "fr" ? "Burkina Faso" : "Burkina Faso", status: language === "fr" ? "En cours" : "In progress", flag: "🇧🇫" },
+    { name: language === "fr" ? "Niger" : "Niger", status: language === "fr" ? "En cours" : "In progress", flag: "🇳🇪" },
+    { name: language === "fr" ? "Mauritanie" : "Mauritania", status: language === "fr" ? "En cours" : "In progress", flag: "🇲🇷" },
+    { name: language === "fr" ? "Guinée-Bissau" : "Guinea-Bissau", status: language === "fr" ? "Planifié" : "Planned", flag: "🇬🇼" },
+    { name: language === "fr" ? "Côte d'Ivoire" : "Ivory Coast", status: language === "fr" ? "Planifié" : "Planned", flag: "🇨🇮" },
+  ], [language]);
+
   return (
     <section id="sahel" className="relative py-20 md:py-28 bg-[#0B3D6E] overflow-hidden">
       {/* Top wave */}
@@ -41,9 +44,9 @@ export default function SahelSection() {
 
       <div className="container relative z-10">
         <SectionTitle
-          label="Présence régionale"
-          title="Notre Ancrage Sahel"
-          subtitle="Une couverture croissante en Afrique de l'Ouest pour accompagner vos projets où qu'ils soient."
+          label={t.sahel.label}
+          title={t.sahel.title}
+          subtitle={t.sahel.subtitle}
           light
         />
 
@@ -53,7 +56,7 @@ export default function SahelSection() {
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
                 src={SAHEL_IMG}
-                alt="Carte de présence Teranga TE en Afrique de l'Ouest"
+                alt={language === "fr" ? "Carte de présence Teranga TE en Afrique de l'Ouest" : "Teranga TE presence map in West Africa"}
                 className="w-full h-auto"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0B3D6E]/30 to-transparent" />
@@ -68,7 +71,7 @@ export default function SahelSection() {
                 <div className="flex items-center gap-2 mb-4">
                   <MapPin className="w-5 h-5 text-[#D4A843]" />
                   <h3 className="text-xl text-white font-['Outfit'] font-semibold">
-                    Pays actifs
+                    {t.sahel.activePresence}
                   </h3>
                 </div>
                 <div className="space-y-3">
@@ -96,7 +99,7 @@ export default function SahelSection() {
                 <div className="flex items-center gap-2 mb-4">
                   <TrendingUp className="w-5 h-5 text-[#D4A843]" />
                   <h3 className="text-xl text-white font-['Outfit'] font-semibold">
-                    Déploiements 2026–2028
+                    {language === "fr" ? "Déploiements 2026–2028" : "Deployments 2026–2028"}
                   </h3>
                 </div>
                 <div className="space-y-3">
@@ -124,10 +127,10 @@ export default function SahelSection() {
                 <Leaf className="w-5 h-5 text-[#D4A843] mt-0.5 shrink-0" />
                 <div>
                   <p className="text-white/90 text-sm font-['Outfit'] font-medium mb-1">
-                    Objectif 2028
+                    {t.sahel.objective2028}
                   </p>
                   <p className="text-white/60 text-sm leading-relaxed">
-                    Présence consolidée dans 6+ pays avec un impact ESG mesurable et un centre de formation technique régional.
+                    {t.sahel.objectiveDesc}
                   </p>
                 </div>
               </div>

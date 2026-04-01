@@ -3,7 +3,7 @@
  * Presents company culture, benefits, job openings and application form.
  * Design: Sahélien organique with warm golden/blue palette.
  */
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Briefcase,
@@ -25,130 +25,23 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const CAREERS_HERO =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/careers-hero-Kdn3TZmsZdigyAMGfnMJhP.webp";
 
-/* ─── Culture values ─── */
-const cultureValues = [
-  {
-    icon: Heart,
-    title: "Teranga",
-    desc: "L'hospitalité sénégalaise au cœur de nos relations. Chaque collaborateur est accueilli comme un membre de la famille.",
-  },
-  {
-    icon: Rocket,
-    title: "Innovation",
-    desc: "Nous encourageons l'initiative et la créativité. Chaque idée compte pour transformer le Sahel.",
-  },
-  {
-    icon: GraduationCap,
-    title: "Formation continue",
-    desc: "Certifications Cisco, Fortinet, VMware, Microsoft… Nous investissons dans votre montée en compétences.",
-  },
-  {
-    icon: Globe,
-    title: "Impact régional",
-    desc: "Travaillez sur des projets qui transforment les infrastructures de 6+ pays du Sahel.",
-  },
-];
-
-/* ─── Benefits ─── */
-const benefits = [
-  { icon: Shield, label: "Couverture santé" },
-  { icon: GraduationCap, label: "Certifications financées" },
-  { icon: Sun, label: "Environnement bienveillant" },
-  { icon: Users, label: "Équipe soudée" },
-  { icon: Globe, label: "Mobilité régionale" },
-  { icon: Zap, label: "Projets stimulants" },
-];
-
-/* ─── Job openings ─── */
-const jobOpenings = [
-  {
-    id: 1,
-    title: "Ingénieur Réseaux & Sécurité",
-    department: "ICT",
-    location: "Dakar, Sénégal",
-    type: "CDI – Temps plein",
-    description:
-      "Vous concevez, déployez et administrez les infrastructures réseau et sécurité de nos clients. Vous assurez la supervision proactive et le support N2/N3 dans un environnement multi-clients.",
-    requirements: [
-      "Bac+5 en Informatique, Réseaux ou Télécommunications",
-      "3+ ans d'expérience en administration réseau (Cisco, Fortinet)",
-      "Certifications CCNA/CCNP ou NSE4+ appréciées",
-      "Expérience en environnement multi-sites",
-      "Français courant, anglais technique",
-    ],
-  },
-  {
-    id: 2,
-    title: "Technicien Systèmes & Virtualisation",
-    department: "ICT",
-    location: "Dakar, Sénégal",
-    type: "CDI – Temps plein",
-    description:
-      "Vous gérez les environnements serveurs et de virtualisation (VMware, Hyper-V) de nos clients. Vous participez aux projets de migration cloud et à l'infogérance quotidienne.",
-    requirements: [
-      "Bac+3/5 en Informatique ou Systèmes",
-      "2+ ans d'expérience en administration Windows Server / Linux",
-      "Connaissances VMware vSphere, Microsoft 365",
-      "Capacité à travailler en astreinte (support 24/7)",
-      "Sens du service client et rigueur",
-    ],
-  },
-  {
-    id: 3,
-    title: "Ingénieur Énergie Solaire",
-    department: "Énergies Renouvelables",
-    location: "Dakar, Sénégal (déplacements régionaux)",
-    type: "CDI – Temps plein",
-    description:
-      "Vous dimensionnez et supervisez l'installation de centrales solaires photovoltaïques (on-grid et off-grid). Vous assurez le suivi de performance et la maintenance des installations.",
-    requirements: [
-      "Bac+5 en Génie Électrique ou Énergies Renouvelables",
-      "3+ ans d'expérience en dimensionnement et installation PV",
-      "Maîtrise des onduleurs SMA, Huawei et des panneaux JinKO/JA Solar",
-      "Disponibilité pour des déplacements au Sahel",
-      "Permis de conduire requis",
-    ],
-  },
-  {
-    id: 4,
-    title: "Chargé(e) Commercial(e) B2B",
-    department: "Commercial",
-    location: "Dakar, Sénégal",
-    type: "CDI – Temps plein",
-    description:
-      "Vous développez le portefeuille clients de Teranga TE sur les segments PME et grands comptes. Vous identifiez les besoins, proposez des solutions adaptées et assurez le suivi commercial.",
-    requirements: [
-      "Bac+3/5 en Commerce, Marketing ou Gestion",
-      "2+ ans d'expérience en vente B2B (services IT ou énergie)",
-      "Excellentes capacités de négociation et de présentation",
-      "Connaissance du tissu économique sénégalais et sahélien",
-      "Maîtrise du français, wolof apprécié",
-    ],
-  },
-  {
-    id: 5,
-    title: "Technicien MPS (Managed Print Services)",
-    department: "ICT",
-    location: "Dakar, Sénégal",
-    type: "CDI – Temps plein",
-    description:
-      "Vous assurez l'installation, la maintenance et le suivi du parc d'impression de nos clients (Ricoh, Riso, Epson). Vous optimisez les coûts d'impression et garantissez la disponibilité des équipements.",
-    requirements: [
-      "Bac+2/3 en Maintenance Informatique ou Électronique",
-      "Expérience en maintenance d'imprimantes multifonctions",
-      "Connaissance des marques Ricoh, Riso ou Epson",
-      "Autonomie et sens de l'organisation",
-      "Permis de conduire souhaité",
-    ],
-  },
-];
+interface JobOpening {
+  id: number;
+  title: string;
+  department: string;
+  location: string;
+  type: string;
+  description: string;
+  requirements: string[];
+}
 
 /* ─── Job Card Component ─── */
-function JobCard({ job }: { job: (typeof jobOpenings)[0] }) {
+function JobCard({ job, labels }: { job: JobOpening; labels: { viewDetail: string; collapse: string; profileSought: string; apply: string } }) {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -183,7 +76,7 @@ function JobCard({ job }: { job: (typeof jobOpenings)[0] }) {
             </div>
           </div>
           <div className="flex items-center gap-2 text-[#D4A843] font-['Outfit'] font-medium text-sm shrink-0">
-            {expanded ? "Réduire" : "Voir le détail"}
+            {expanded ? labels.collapse : labels.viewDetail}
             {expanded ? (
               <ChevronUp className="w-4 h-4" />
             ) : (
@@ -207,7 +100,7 @@ function JobCard({ job }: { job: (typeof jobOpenings)[0] }) {
                 {job.description}
               </p>
               <h4 className="font-['Outfit'] font-semibold text-[#0B3D6E] text-sm mb-3">
-                Profil recherché :
+                {labels.profileSought} :
               </h4>
               <ul className="space-y-2 mb-6">
                 {job.requirements.map((req, i) => (
@@ -226,7 +119,7 @@ function JobCard({ job }: { job: (typeof jobOpenings)[0] }) {
                 className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white text-sm font-['Outfit'] font-semibold rounded-full shadow-md hover:shadow-lg hover:scale-[1.02] transition-all"
               >
                 <Send className="w-4 h-4" />
-                Postuler à cette offre
+                {labels.apply}
               </a>
             </div>
           </motion.div>
@@ -238,12 +131,102 @@ function JobCard({ job }: { job: (typeof jobOpenings)[0] }) {
 
 /* ─── Main Page ─── */
 export default function Careers() {
+  const { language, t } = useLanguage();
   const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const cultureValues = useMemo(() => language === "fr" ? [
+    { icon: Heart, title: "Teranga", desc: "L'hospitalité sénégalaise au cœur de nos relations. Chaque collaborateur est accueilli comme un membre de la famille." },
+    { icon: Rocket, title: "Innovation", desc: "Nous encourageons l'initiative et la créativité. Chaque idée compte pour transformer le Sahel." },
+    { icon: GraduationCap, title: "Formation continue", desc: "Certifications Cisco, Fortinet, VMware, Microsoft… Nous investissons dans votre montée en compétences." },
+    { icon: Globe, title: "Impact régional", desc: "Travaillez sur des projets qui transforment les infrastructures de 6+ pays du Sahel." },
+  ] : [
+    { icon: Heart, title: "Teranga", desc: "Senegalese hospitality at the heart of our relationships. Every team member is welcomed as family." },
+    { icon: Rocket, title: "Innovation", desc: "We encourage initiative and creativity. Every idea matters to transform the Sahel." },
+    { icon: GraduationCap, title: "Continuous Training", desc: "Cisco, Fortinet, VMware, Microsoft certifications… We invest in your skills development." },
+    { icon: Globe, title: "Regional Impact", desc: "Work on projects that transform infrastructure across 6+ Sahel countries." },
+  ], [language]);
+
+  const benefits = useMemo(() => language === "fr" ? [
+    { icon: Shield, label: "Couverture santé" },
+    { icon: GraduationCap, label: "Certifications financées" },
+    { icon: Sun, label: "Environnement bienveillant" },
+    { icon: Users, label: "Équipe soudée" },
+    { icon: Globe, label: "Mobilité régionale" },
+    { icon: Zap, label: "Projets stimulants" },
+  ] : [
+    { icon: Shield, label: "Health coverage" },
+    { icon: GraduationCap, label: "Funded certifications" },
+    { icon: Sun, label: "Caring environment" },
+    { icon: Users, label: "Close-knit team" },
+    { icon: Globe, label: "Regional mobility" },
+    { icon: Zap, label: "Exciting projects" },
+  ], [language]);
+
+  const jobOpenings: JobOpening[] = useMemo(() => language === "fr" ? [
+    {
+      id: 1, title: "Ingénieur Réseaux & Sécurité", department: "ICT", location: "Dakar, Sénégal", type: "CDI – Temps plein",
+      description: "Vous concevez, déployez et administrez les infrastructures réseau et sécurité de nos clients. Vous assurez la supervision proactive et le support N2/N3 dans un environnement multi-clients.",
+      requirements: ["Bac+5 en Informatique, Réseaux ou Télécommunications", "3+ ans d'expérience en administration réseau (Cisco, Fortinet)", "Certifications CCNA/CCNP ou NSE4+ appréciées", "Expérience en environnement multi-sites", "Français courant, anglais technique"],
+    },
+    {
+      id: 2, title: "Technicien Systèmes & Virtualisation", department: "ICT", location: "Dakar, Sénégal", type: "CDI – Temps plein",
+      description: "Vous gérez les environnements serveurs et de virtualisation (VMware, Hyper-V) de nos clients. Vous participez aux projets de migration cloud et à l'infogérance quotidienne.",
+      requirements: ["Bac+3/5 en Informatique ou Systèmes", "2+ ans d'expérience en administration Windows Server / Linux", "Connaissances VMware vSphere, Microsoft 365", "Capacité à travailler en astreinte (support 24/7)", "Sens du service client et rigueur"],
+    },
+    {
+      id: 3, title: "Ingénieur Énergie Solaire", department: "Énergies Renouvelables", location: "Dakar, Sénégal (déplacements régionaux)", type: "CDI – Temps plein",
+      description: "Vous dimensionnez et supervisez l'installation de centrales solaires photovoltaïques (on-grid et off-grid). Vous assurez le suivi de performance et la maintenance des installations.",
+      requirements: ["Bac+5 en Génie Électrique ou Énergies Renouvelables", "3+ ans d'expérience en dimensionnement et installation PV", "Maîtrise des onduleurs SMA, Huawei et des panneaux JinKO/JA Solar", "Disponibilité pour des déplacements au Sahel", "Permis de conduire requis"],
+    },
+    {
+      id: 4, title: "Chargé(e) Commercial(e) B2B", department: "Commercial", location: "Dakar, Sénégal", type: "CDI – Temps plein",
+      description: "Vous développez le portefeuille clients de Teranga TE sur les segments PME et grands comptes. Vous identifiez les besoins, proposez des solutions adaptées et assurez le suivi commercial.",
+      requirements: ["Bac+3/5 en Commerce, Marketing ou Gestion", "2+ ans d'expérience en vente B2B (services IT ou énergie)", "Excellentes capacités de négociation et de présentation", "Connaissance du tissu économique sénégalais et sahélien", "Maîtrise du français, wolof apprécié"],
+    },
+    {
+      id: 5, title: "Technicien MPS (Managed Print Services)", department: "ICT", location: "Dakar, Sénégal", type: "CDI – Temps plein",
+      description: "Vous assurez l'installation, la maintenance et le suivi du parc d'impression de nos clients (Ricoh, Riso, Epson). Vous optimisez les coûts d'impression et garantissez la disponibilité des équipements.",
+      requirements: ["Bac+2/3 en Maintenance Informatique ou Électronique", "Expérience en maintenance d'imprimantes multifonctions", "Connaissance des marques Ricoh, Riso ou Epson", "Autonomie et sens de l'organisation", "Permis de conduire souhaité"],
+    },
+  ] : [
+    {
+      id: 1, title: "Network & Security Engineer", department: "ICT", location: "Dakar, Senegal", type: "Permanent – Full-time",
+      description: "You design, deploy and manage network and security infrastructure for our clients. You ensure proactive monitoring and N2/N3 support in a multi-client environment.",
+      requirements: ["Master's degree in IT, Networks or Telecommunications", "3+ years experience in network administration (Cisco, Fortinet)", "CCNA/CCNP or NSE4+ certifications preferred", "Multi-site environment experience", "Fluent French, technical English"],
+    },
+    {
+      id: 2, title: "Systems & Virtualization Technician", department: "ICT", location: "Dakar, Senegal", type: "Permanent – Full-time",
+      description: "You manage server and virtualization environments (VMware, Hyper-V) for our clients. You participate in cloud migration projects and daily IT management.",
+      requirements: ["Bachelor's/Master's in IT or Systems", "2+ years experience in Windows Server / Linux administration", "VMware vSphere, Microsoft 365 knowledge", "Ability to work on-call (24/7 support)", "Customer service orientation and rigor"],
+    },
+    {
+      id: 3, title: "Solar Energy Engineer", department: "Renewable Energy", location: "Dakar, Senegal (regional travel)", type: "Permanent – Full-time",
+      description: "You size and supervise the installation of photovoltaic solar plants (on-grid and off-grid). You ensure performance monitoring and maintenance of installations.",
+      requirements: ["Master's in Electrical Engineering or Renewable Energy", "3+ years experience in PV sizing and installation", "Proficiency with SMA, Huawei inverters and JinKO/JA Solar panels", "Availability for travel across the Sahel", "Driver's license required"],
+    },
+    {
+      id: 4, title: "B2B Sales Representative", department: "Sales", location: "Dakar, Senegal", type: "Permanent – Full-time",
+      description: "You develop Teranga TE's client portfolio across SME and enterprise segments. You identify needs, propose tailored solutions and ensure commercial follow-up.",
+      requirements: ["Bachelor's/Master's in Business, Marketing or Management", "2+ years B2B sales experience (IT services or energy)", "Excellent negotiation and presentation skills", "Knowledge of the Senegalese and Sahelian business landscape", "Fluent French, Wolof appreciated"],
+    },
+    {
+      id: 5, title: "MPS Technician (Managed Print Services)", department: "ICT", location: "Dakar, Senegal", type: "Permanent – Full-time",
+      description: "You handle installation, maintenance and monitoring of our clients' print fleet (Ricoh, Riso, Epson). You optimize printing costs and ensure equipment availability.",
+      requirements: ["Associate's/Bachelor's in IT Maintenance or Electronics", "Experience in multifunction printer maintenance", "Knowledge of Ricoh, Riso or Epson brands", "Autonomy and organizational skills", "Driver's license preferred"],
+    },
+  ], [language]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setFormSubmitted(true);
     setTimeout(() => setFormSubmitted(false), 5000);
+  };
+
+  const jobCardLabels = {
+    viewDetail: t.careers.viewDetail,
+    collapse: t.careers.collapse,
+    profileSought: t.careers.profileSought,
+    apply: t.careers.apply,
   };
 
   return (
@@ -255,7 +238,7 @@ export default function Careers() {
         <div className="absolute inset-0">
           <img
             src={CAREERS_HERO}
-            alt="Équipe Teranga TE"
+            alt={language === "fr" ? "Équipe Teranga TE" : "Teranga TE Team"}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B3D6E]/90 via-[#0B3D6E]/70 to-[#0B3D6E]/50" />
@@ -267,15 +250,17 @@ export default function Careers() {
             transition={{ duration: 0.8 }}
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-[#D4A843]/20 text-[#D4A843] text-sm font-['Outfit'] font-semibold mb-6 backdrop-blur-sm border border-[#D4A843]/30">
-              Rejoignez l'aventure Teranga
+              {t.careers.heroTitle} {t.careers.heroTitleHighlight}
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-['DM_Serif_Display'] text-white leading-tight mb-6">
-              Construisez l'avenir du{" "}
-              <span className="text-[#D4A843]">Sahel</span> avec nous
+              {language === "fr" ? (
+                <>Construisez l'avenir du{" "}<span className="text-[#D4A843]">Sahel</span> avec nous</>
+              ) : (
+                <>Build the future of the{" "}<span className="text-[#D4A843]">Sahel</span> with us</>
+              )}
             </h1>
             <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8">
-              Rejoignez une équipe passionnée qui transforme les infrastructures
-              technologiques et énergétiques de l'Afrique de l'Ouest.
+              {t.careers.heroSubtitle}
             </p>
             <a
               href="#offres"
@@ -286,7 +271,7 @@ export default function Careers() {
               className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white font-['Outfit'] font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all"
             >
               <Briefcase className="w-5 h-5" />
-              Voir nos offres
+              {t.careers.openPositions}
             </a>
           </motion.div>
         </div>
@@ -299,7 +284,7 @@ export default function Careers() {
           className="inline-flex items-center gap-2 text-[#0B3D6E]/60 hover:text-[#0B3D6E] text-sm font-['Outfit'] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
-          Retour à l'accueil
+          {t.careers.backHome}
         </a>
       </div>
 
@@ -308,14 +293,13 @@ export default function Careers() {
         <div className="container">
           <div className="text-center mb-14">
             <span className="inline-block font-['Outfit'] font-semibold text-xs uppercase tracking-[0.2em] text-[#D4A843] mb-3">
-              Notre culture
+              {t.careers.cultureTitle}
             </span>
             <h2 className="text-3xl md:text-4xl font-['DM_Serif_Display'] text-[#0B3D6E] mb-4">
-              Pourquoi travailler chez Teranga TE ?
+              {language === "fr" ? "Pourquoi travailler chez Teranga TE ?" : "Why work at Teranga TE?"}
             </h2>
             <p className="text-[#0B3D6E]/60 max-w-2xl mx-auto">
-              Chez Teranga TE, nous croyons que les meilleurs talents s'épanouissent
-              dans un environnement qui valorise l'excellence, l'hospitalité et l'impact.
+              {t.careers.cultureSubtitle}
             </p>
           </div>
 
@@ -345,7 +329,7 @@ export default function Careers() {
           {/* Benefits strip */}
           <div className="bg-gradient-to-r from-[#0B3D6E] to-[#0B3D6E]/90 rounded-2xl p-8 md:p-10">
             <h3 className="text-white font-['Outfit'] font-bold text-xl text-center mb-8">
-              Nos avantages
+              {language === "fr" ? "Nos avantages" : "Our Benefits"}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
               {benefits.map((b) => (
@@ -366,20 +350,19 @@ export default function Careers() {
         <div className="container">
           <div className="text-center mb-14">
             <span className="inline-block font-['Outfit'] font-semibold text-xs uppercase tracking-[0.2em] text-[#D4A843] mb-3">
-              Nos offres
+              {language === "fr" ? "Nos offres" : "Our openings"}
             </span>
             <h2 className="text-3xl md:text-4xl font-['DM_Serif_Display'] text-[#0B3D6E] mb-4">
-              Postes ouverts
+              {t.careers.openPositions}
             </h2>
             <p className="text-[#0B3D6E]/60 max-w-2xl mx-auto">
-              Découvrez nos opportunités actuelles et trouvez le poste qui correspond
-              à vos ambitions.
+              {t.careers.openPositionsSubtitle}
             </p>
           </div>
 
           <div className="max-w-3xl mx-auto space-y-4">
             {jobOpenings.map((job) => (
-              <JobCard key={job.id} job={job} />
+              <JobCard key={job.id} job={job} labels={jobCardLabels} />
             ))}
           </div>
         </div>
@@ -391,13 +374,13 @@ export default function Careers() {
           <div className="max-w-2xl mx-auto">
             <div className="text-center mb-10">
               <span className="inline-block font-['Outfit'] font-semibold text-xs uppercase tracking-[0.2em] text-[#D4A843] mb-3">
-                Candidature
+                {language === "fr" ? "Candidature" : "Application"}
               </span>
               <h2 className="text-3xl md:text-4xl font-['DM_Serif_Display'] text-[#0B3D6E] mb-4">
-                Postulez maintenant
+                {t.careers.spontaneous}
               </h2>
               <p className="text-[#0B3D6E]/60">
-                Envoyez-nous votre candidature et nous vous recontacterons sous 48h.
+                {t.careers.spontaneousSubtitle}
               </p>
             </div>
 
@@ -409,10 +392,10 @@ export default function Careers() {
               >
                 <CheckCircle2 className="w-12 h-12 text-green-500 mx-auto mb-4" />
                 <h3 className="text-xl font-['Outfit'] font-bold text-green-800 mb-2">
-                  Candidature envoyée !
+                  {t.careers.applicationSent}
                 </h3>
                 <p className="text-green-700">
-                  Merci pour votre intérêt. Notre équipe RH vous recontactera sous 48h.
+                  {t.careers.applicationSuccess}
                 </p>
               </motion.div>
             ) : (
@@ -423,23 +406,23 @@ export default function Careers() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-['Outfit'] font-medium text-[#0B3D6E] mb-1.5">
-                      Nom complet *
+                      {t.careers.yourName} *
                     </label>
                     <input
                       type="text"
                       required
-                      placeholder="Votre nom"
+                      placeholder={t.contact.namePlaceholder}
                       className="w-full px-4 py-2.5 rounded-xl border border-[#0B3D6E]/15 focus:border-[#D4A843] focus:ring-2 focus:ring-[#D4A843]/20 outline-none transition-all text-sm"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-['Outfit'] font-medium text-[#0B3D6E] mb-1.5">
-                      Email *
+                      {t.careers.yourEmail} *
                     </label>
                     <input
                       type="email"
                       required
-                      placeholder="votre@email.com"
+                      placeholder={t.contact.emailPlaceholder}
                       className="w-full px-4 py-2.5 rounded-xl border border-[#0B3D6E]/15 focus:border-[#D4A843] focus:ring-2 focus:ring-[#D4A843]/20 outline-none transition-all text-sm"
                     />
                   </div>
@@ -448,7 +431,7 @@ export default function Careers() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-['Outfit'] font-medium text-[#0B3D6E] mb-1.5">
-                      Téléphone
+                      {t.careers.yourPhone}
                     </label>
                     <input
                       type="tel"
@@ -458,38 +441,38 @@ export default function Careers() {
                   </div>
                   <div>
                     <label className="block text-sm font-['Outfit'] font-medium text-[#0B3D6E] mb-1.5">
-                      Poste souhaité *
+                      {language === "fr" ? "Poste souhaité" : "Desired position"} *
                     </label>
                     <select
                       required
                       className="w-full px-4 py-2.5 rounded-xl border border-[#0B3D6E]/15 focus:border-[#D4A843] focus:ring-2 focus:ring-[#D4A843]/20 outline-none transition-all text-sm text-[#0B3D6E]/70"
                     >
-                      <option value="">Sélectionnez un poste</option>
+                      <option value="">{language === "fr" ? "Sélectionnez un poste" : "Select a position"}</option>
                       {jobOpenings.map((job) => (
                         <option key={job.id} value={job.title}>
                           {job.title}
                         </option>
                       ))}
-                      <option value="candidature-spontanee">Candidature spontanée</option>
+                      <option value="candidature-spontanee">{t.careers.spontaneous}</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-['Outfit'] font-medium text-[#0B3D6E] mb-1.5">
-                    Message / Motivation *
+                    {t.careers.yourMessage} *
                   </label>
                   <textarea
                     required
                     rows={4}
-                    placeholder="Présentez-vous brièvement et expliquez votre motivation..."
+                    placeholder={language === "fr" ? "Présentez-vous brièvement et expliquez votre motivation..." : "Briefly introduce yourself and explain your motivation..."}
                     className="w-full px-4 py-2.5 rounded-xl border border-[#0B3D6E]/15 focus:border-[#D4A843] focus:ring-2 focus:ring-[#D4A843]/20 outline-none transition-all text-sm resize-none"
                   />
                 </div>
 
                 <div>
                   <label className="block text-sm font-['Outfit'] font-medium text-[#0B3D6E] mb-1.5">
-                    Lien vers votre CV (Google Drive, LinkedIn, etc.)
+                    {language === "fr" ? "Lien vers votre CV (Google Drive, LinkedIn, etc.)" : "Link to your CV (Google Drive, LinkedIn, etc.)"}
                   </label>
                   <input
                     type="url"
@@ -503,12 +486,13 @@ export default function Careers() {
                   className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white font-['Outfit'] font-semibold rounded-full shadow-md hover:shadow-lg hover:scale-[1.01] transition-all"
                 >
                   <Send className="w-4 h-4" />
-                  Envoyer ma candidature
+                  {t.careers.sendApplication}
                 </button>
 
                 <p className="text-center text-[#0B3D6E]/40 text-xs">
-                  Vos données sont traitées conformément à notre politique de confidentialité.
-                  Nous vous recontacterons sous 48h.
+                  {language === "fr"
+                    ? "Vos données sont traitées conformément à notre politique de confidentialité. Nous vous recontacterons sous 48h."
+                    : "Your data is processed in accordance with our privacy policy. We will contact you within 48 hours."}
                 </p>
               </form>
             )}

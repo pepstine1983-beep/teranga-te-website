@@ -2,56 +2,67 @@
  * Teranga Flow - References & Partners Section
  * Real client logos, technology partner logos organized by expertise domain.
  */
+import { useMemo } from "react";
 import { Quote } from "lucide-react";
 import AnimatedSection from "../AnimatedSection";
 import SectionTitle from "../SectionTitle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const clients = [
   {
     name: "AfriRH",
-    sector: "RH & Conseil",
+    sectorFr: "RH & Conseil",
+    sectorEn: "HR & Consulting",
     logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image201_00e0a760.png",
   },
   {
     name: "Afriland Company",
-    sector: "Immobilier & Bâtiment",
+    sectorFr: "Immobilier & Bâtiment",
+    sectorEn: "Real Estate & Construction",
     logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image206_c20c5a56.png",
   },
   {
     name: "Godifa Technologies",
-    sector: "Technologies & Innovation",
+    sectorFr: "Technologies & Innovation",
+    sectorEn: "Technology & Innovation",
     logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image202_c5943d34.png",
   },
   {
     name: "HCP",
-    sector: "Conseil & Projets",
+    sectorFr: "Conseil & Projets",
+    sectorEn: "Consulting & Projects",
     logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image203_58b2eb9c.jpeg",
   },
   {
     name: "NBW Law Firm",
-    sector: "Service Juridique",
+    sectorFr: "Service Juridique",
+    sectorEn: "Legal Services",
     logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image204_a16db25c.png",
   },
   {
     name: "Al Amine Groupe",
-    sector: "GED & Archivage",
+    sectorFr: "GED & Archivage",
+    sectorEn: "EDM & Archiving",
     logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image205_5802c025.png",
   },
   {
     name: "KAI NU DEM",
-    sector: "Transport & Mobilité",
+    sectorFr: "Transport & Mobilité",
+    sectorEn: "Transport & Mobility",
     logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/kai-nu-dem-logo_192e88c7.png",
   },
   {
     name: "KPMG Sénégal",
-    sector: "Audit & Conseil",
+    sectorFr: "Audit & Conseil",
+    sectorEn: "Audit & Consulting",
     logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/s4TCDTV7TKKT_725f6646.png",
   },
 ];
 
 const partnerCategories = [
   {
-    category: "ICT — Réseaux, Sécurité, Postes & Serveurs",
+    categoryFr: "ICT — Réseaux, Sécurité, Postes & Serveurs",
+    categoryEn: "ICT — Networks, Security, Workstations & Servers",
     partners: [
       { name: "Cisco", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image193_63a1a8c4.png" },
       { name: "Fortinet", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image194_01fd48b2.png" },
@@ -65,7 +76,8 @@ const partnerCategories = [
     ],
   },
   {
-    category: "Impression (MPS)",
+    categoryFr: "Impression (MPS)",
+    categoryEn: "Print (MPS)",
     partners: [
       { name: "Ricoh", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image173_b629c911.png" },
       { name: "Riso", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image172_ae44fdd3.png" },
@@ -73,7 +85,8 @@ const partnerCategories = [
     ],
   },
   {
-    category: "Énergie — CFO (Groupes Électrogènes & Onduleurs)",
+    categoryFr: "Énergie — CFO (Groupes Électrogènes & Onduleurs)",
+    categoryEn: "Energy — High Current (Generators & UPS)",
     partners: [
       { name: "GE", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/ge-logo_51b1241f.png" },
       { name: "Pramac", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/pramac-logo_9b0008fa.jpg" },
@@ -90,7 +103,8 @@ const partnerCategories = [
     ],
   },
   {
-    category: "Énergie — CFA (Sécurité Incendie & Vidéosurveillance)",
+    categoryFr: "Énergie — CFA (Sécurité Incendie & Vidéosurveillance)",
+    categoryEn: "Energy — Low Current (Fire Safety & CCTV)",
     partners: [
       { name: "Honeywell", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/honeywell-logo_4f7980e1.png" },
       { name: "Hikvision", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/hikvision-logo_fa1182e0.png" },
@@ -103,7 +117,8 @@ const partnerCategories = [
     ],
   },
   {
-    category: "Énergie — CVC (Climatisation & Ventilation)",
+    categoryFr: "Énergie — CVC (Climatisation & Ventilation)",
+    categoryEn: "Energy — HVAC (Air Conditioning & Ventilation)",
     partners: [
       { name: "Daikin", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/daikin-logo_cf1d433d.png" },
       { name: "Carrier", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/carrier-logo_2f9fffcc.png" },
@@ -112,7 +127,8 @@ const partnerCategories = [
     ],
   },
   {
-    category: "Câblage Réseau",
+    categoryFr: "Câblage Réseau",
+    categoryEn: "Network Cabling",
     partners: [
       { name: "Legrand", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/legrand-logo_2d450622.png" },
       { name: "Nexans", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/nexans-logo_c6f5cdec.png" },
@@ -120,7 +136,8 @@ const partnerCategories = [
     ],
   },
   {
-    category: "Énergies Renouvelables — Solaire PV & Stockage",
+    categoryFr: "Énergies Renouvelables — Solaire PV & Stockage",
+    categoryEn: "Renewable Energy — Solar PV & Storage",
     partners: [
       { name: "JinKO Solar", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image191_5c39e4d9.png" },
       { name: "JA Solar", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image192_30b97b2e.png" },
@@ -131,7 +148,8 @@ const partnerCategories = [
     ],
   },
   {
-    category: "Solar Home System",
+    categoryFr: "Solar Home System",
+    categoryEn: "Solar Home System",
     partners: [
       { name: "Victron Energy", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image187_84633471.png" },
       { name: "Bboxx", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/bboxx-logo_b3fa2fd2.jpg" },
@@ -140,7 +158,8 @@ const partnerCategories = [
     ],
   },
   {
-    category: "Monitoring Énergétique",
+    categoryFr: "Monitoring Énergétique",
+    categoryEn: "Energy Monitoring",
     partners: [
       { name: "Fronius", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/fronius-logo_36d87f91.png" },
       { name: "Huawei", logo: "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/image188_8c88e19f.png" },
@@ -152,37 +171,48 @@ const partnerCategories = [
   },
 ];
 
-const testimonials = [
-  {
-    quote:
-      "Teranga TE a transformé notre infrastructure IT avec un professionnalisme remarquable. Leur support 24/7 est un véritable atout pour notre activité.",
-    author: "Directeur IT",
-    company: "Groupe industriel, Dakar",
-  },
-  {
-    quote:
-      "L'installation solaire réalisée par Teranga TE nous permet de réduire nos coûts énergétiques de 40%. Un partenaire fiable et innovant.",
-    author: "Responsable Opérations",
-    company: "PME, Sénégal",
-  },
-];
-
 export default function ReferencesSection() {
+  const { language, t } = useLanguage();
+
+  const testimonials = useMemo(() => language === "fr" ? [
+    {
+      quote: "Teranga TE a transformé notre infrastructure IT avec un professionnalisme remarquable. Leur support 24/7 est un véritable atout pour notre activité.",
+      author: "Directeur IT",
+      company: "Groupe industriel, Dakar",
+    },
+    {
+      quote: "L'installation solaire réalisée par Teranga TE nous permet de réduire nos coûts énergétiques de 40%. Un partenaire fiable et innovant.",
+      author: "Responsable Opérations",
+      company: "PME, Sénégal",
+    },
+  ] : [
+    {
+      quote: "Teranga TE transformed our IT infrastructure with remarkable professionalism. Their 24/7 support is a real asset for our business.",
+      author: "IT Director",
+      company: "Industrial Group, Dakar",
+    },
+    {
+      quote: "The solar installation by Teranga TE allows us to reduce our energy costs by 40%. A reliable and innovative partner.",
+      author: "Operations Manager",
+      company: "SME, Senegal",
+    },
+  ], [language]);
+
   return (
     <section id="references" className="py-20 md:py-28 bg-background">
       <div className="container">
         <SectionTitle
-          label="Ils nous font confiance"
-          title="Références & Partenaires"
-          subtitle="Nos clients nous choisissent pour notre expertise, notre réactivité et notre engagement à leurs côtés."
+          label={t.references.label}
+          title={t.references.title}
+          subtitle={t.references.subtitle}
         />
 
         {/* Client logos */}
         <AnimatedSection className="mb-16">
           <h3 className="text-xl text-[#0B3D6E] text-center mb-8 font-['Outfit'] font-semibold">
-            Nos Clients
+            {t.references.ourClients}
           </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {clients.map((client) => (
               <div
                 key={client.name}
@@ -202,7 +232,7 @@ export default function ReferencesSection() {
                   </div>
                 )}
                 <span className="text-[#0B3D6E]/50 text-[10px] font-['Outfit'] text-center leading-tight">
-                  {client.sector}
+                  {language === "fr" ? client.sectorFr : client.sectorEn}
                 </span>
               </div>
             ))}
@@ -212,13 +242,13 @@ export default function ReferencesSection() {
         {/* Technology Partners by domain */}
         <AnimatedSection className="mb-16">
           <h3 className="text-xl text-[#0B3D6E] text-center mb-10 font-['Outfit'] font-semibold">
-            Partenaires Technologiques
+            {t.references.partnerEcosystem}
           </h3>
           <div className="space-y-10">
             {partnerCategories.map((cat) => (
-              <div key={cat.category}>
+              <div key={cat.categoryFr}>
                 <p className="text-sm font-['Outfit'] font-medium text-[#D4A843] uppercase tracking-wider mb-4 text-center">
-                  {cat.category}
+                  {language === "fr" ? cat.categoryFr : cat.categoryEn}
                 </p>
                 <div className="flex flex-wrap justify-center gap-3">
                   {cat.partners.map((partner) => (
@@ -249,32 +279,34 @@ export default function ReferencesSection() {
         </AnimatedSection>
 
         {/* Testimonials */}
+        <AnimatedSection className="mb-4">
+          <h3 className="text-xl text-[#0B3D6E] text-center mb-8 font-['Outfit'] font-semibold">
+            {t.references.testimonials}
+          </h3>
+        </AnimatedSection>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {testimonials.map((t, i) => (
+          {testimonials.map((testimonial, i) => (
             <AnimatedSection key={i} delay={i * 0.15}>
               <div className="relative bg-white rounded-2xl p-8 border border-[#D4A843]/10 shadow-sm h-full">
-                {/* Quote icon */}
                 <div className="absolute -top-4 left-8">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#D4A843] to-[#C49535] flex items-center justify-center shadow-md">
                     <Quote className="w-4 h-4 text-white" />
                   </div>
                 </div>
-
                 <p className="text-[#0B3D6E]/80 leading-relaxed mb-6 mt-2 italic">
-                  "{t.quote}"
+                  "{testimonial.quote}"
                 </p>
-
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#0B3D6E]/10 to-[#D4A843]/10 flex items-center justify-center">
                     <span className="text-[#0B3D6E] font-['Outfit'] font-bold text-sm">
-                      {t.author.charAt(0)}
+                      {testimonial.author.charAt(0)}
                     </span>
                   </div>
                   <div>
                     <p className="text-[#0B3D6E] font-['Outfit'] font-semibold text-sm">
-                      {t.author}
+                      {testimonial.author}
                     </p>
-                    <p className="text-[#0B3D6E]/50 text-xs">{t.company}</p>
+                    <p className="text-[#0B3D6E]/50 text-xs">{testimonial.company}</p>
                   </div>
                 </div>
               </div>

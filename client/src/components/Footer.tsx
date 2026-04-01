@@ -3,25 +3,28 @@
  * Deep blue background with golden accents, organic wave top separator.
  */
 import { Phone, Mail, MapPin, ArrowUp, Globe } from "lucide-react";
-
-const expertises = [
-  "ICT",
-  "Énergie",
-  "Énergies Renouvelables",
-  "Contrôle Technique",
-];
-
-const quickLinks = [
-  { label: "Accueil", href: "#accueil" },
-  { label: "À propos", href: "#apropos" },
-  { label: "Expertises", href: "#expertises" },
-  { label: "Références", href: "#references" },
-  { label: "Sahel", href: "#sahel" },
-  { label: "Contact", href: "#contact" },
-  { label: "Carrières", href: "/carrieres" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
+  const expertises = [
+    "ICT",
+    t.expertises.energy.title,
+    t.expertises.renewables.title,
+    t.expertises.control.title,
+  ];
+
+  const quickLinks = [
+    { label: t.nav.home, href: "#accueil" },
+    { label: t.nav.about, href: "#apropos" },
+    { label: t.nav.expertises, href: "#expertises" },
+    { label: t.nav.references, href: "#references" },
+    { label: t.nav.sahel, href: "#sahel" },
+    { label: t.nav.contact, href: "#contact" },
+    { label: t.nav.careers, href: "/carrieres" },
+  ];
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -47,21 +50,21 @@ export default function Footer() {
               />
             </div>
             <p className="text-white/70 text-sm leading-relaxed mb-5">
-              Votre partenaire intégré en Technologie, Énergie et Solutions Innovantes pour le Sahel.
+              {t.footer.tagline}
             </p>
             <button
               onClick={scrollToTop}
               className="flex items-center gap-2 text-[#D4A843] text-sm font-['Outfit'] font-medium hover:text-[#D4A843]/80 transition-colors"
             >
               <ArrowUp className="w-4 h-4" />
-              Retour en haut
+              {t.footer.backToTop}
             </button>
           </div>
 
           {/* Quick Links */}
           <div>
             <h4 className="font-['Outfit'] font-semibold text-[#D4A843] text-sm uppercase tracking-wider mb-5">
-              Navigation
+              {t.footer.navigation}
             </h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -80,7 +83,7 @@ export default function Footer() {
           {/* Expertises */}
           <div>
             <h4 className="font-['Outfit'] font-semibold text-[#D4A843] text-sm uppercase tracking-wider mb-5">
-              Nos Expertises
+              {t.footer.ourExpertises}
             </h4>
             <ul className="space-y-3">
               {expertises.map((exp) => (
@@ -100,9 +103,9 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-[#D4A843] mt-0.5 shrink-0" />
                 <div className="flex flex-col gap-1">
-                <span className="text-white/70 text-sm">+221 77 337 26 28</span>
-                <span className="text-white/70 text-sm">+221 33 843 59 27</span>
-              </div>
+                  <span className="text-white/70 text-sm">+221 77 337 26 28</span>
+                  <span className="text-white/70 text-sm">+221 33 843 59 27</span>
+                </div>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-[#D4A843] mt-0.5 shrink-0" />
@@ -127,11 +130,11 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/50 text-xs">
-            &copy; {new Date().getFullYear()} Teranga Technology & Energy. Tous droits réservés.
+            &copy; {new Date().getFullYear()} Teranga Technology & Energy. {t.footer.allRights}
           </p>
           <div className="flex items-center gap-6">
-            <span className="text-white/50 text-xs">Dakar, Sénégal</span>
-            <span className="text-white/50 text-xs">Support 24/7</span>
+            <span className="text-white/50 text-xs">{t.footer.dakar}</span>
+            <span className="text-white/50 text-xs">{t.footer.support247}</span>
           </div>
         </div>
       </div>

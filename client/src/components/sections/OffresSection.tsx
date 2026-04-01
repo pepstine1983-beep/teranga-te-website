@@ -2,108 +2,85 @@
  * Teranga Flow - Offres & Différenciation Section
  * Service formulas (4 tiers) + comparison table "Why Teranga TE".
  */
+import { useMemo } from "react";
 import { Wrench, Shield, Crown, Star, Check, X as XIcon, ArrowRight } from "lucide-react";
 import AnimatedSection from "../AnimatedSection";
 import SectionTitle from "../SectionTitle";
-
-const formulas = [
-  {
-    name: "Essentiel",
-    target: "TPE & Startups",
-    icon: Wrench,
-    color: "#6B7280",
-    recommended: false,
-    features: [
-      "Maintenance Corrective sur appel",
-      "Intervention sous 4h ouvrées",
-      "Accès au portail de Ticketing",
-      "Pièces de rechange facturées en sus",
-    ],
-  },
-  {
-    name: "Confort",
-    target: "PME & Administration",
-    icon: Shield,
-    color: "#0B3D6E",
-    recommended: false,
-    features: [
-      "Maintenance Préventive & Corrective",
-      "Interventions illimitées (Main d'œuvre)",
-      "Visites de contrôle trimestrielles",
-      "Pièces majeures en option",
-    ],
-  },
-  {
-    name: "Premium",
-    target: "ETI & Groupes",
-    icon: Crown,
-    color: "#D4A843",
-    recommended: true,
-    features: [
-      "Support & Supervision 24h/7",
-      "SLA Garanti (Disponibilité > 99%)",
-      "Technicien dédié & Gestionnaire de compte",
-      "Stock de consignation sur site",
-      "Plan de progrès annuel inclus",
-    ],
-  },
-  {
-    name: "Sur-mesure",
-    target: "Multi-sites & Spécifique",
-    icon: Star,
-    color: "#5B7B3A",
-    recommended: false,
-    features: [
-      "Architecture Multi-sites / Régionale",
-      "KPI spécifiques & Reporting personnalisé",
-      "Engagement de Résultats",
-      "Gestion de projet & Gouvernance",
-    ],
-  },
-];
-
-const comparison = [
-  {
-    criteria: "Approche",
-    classic: "Mono-domaine / Silos",
-    teranga: "Partenaire Unique Multi-domaines",
-  },
-  {
-    criteria: "Réactivité & Standards",
-    classic: "Délais rallongés",
-    teranga: "Locale + Standards Internationaux",
-  },
-  {
-    criteria: "Engagement de Service",
-    classic: "SLA Non Garantis / Best Effort",
-    teranga: "SLA 98%+ Contractuels",
-  },
-  {
-    criteria: "Modèle Financier",
-    classic: "Vente Unique (CAPEX)",
-    teranga: "Flexible : CAPEX ou OPEX",
-  },
-  {
-    criteria: "Support & Couverture",
-    classic: "Heures Ouvrées / Limité",
-    teranga: "Support 24/7 + Couverture Sahel",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function OffresSection() {
+  const { t, language } = useLanguage();
+
+  const formulas = useMemo(() => [
+    {
+      name: t.offers.essentiel.name,
+      target: t.offers.essentiel.target,
+      icon: Wrench,
+      color: "#6B7280",
+      recommended: false,
+      features: language === "fr"
+        ? ["Maintenance Corrective sur appel", "Intervention sous 4h ouvrées", "Accès au portail de Ticketing", "Pièces de rechange facturées en sus"]
+        : ["Corrective maintenance on call", "Intervention within 4 business hours", "Access to ticketing portal", "Spare parts billed separately"],
+    },
+    {
+      name: t.offers.confort.name,
+      target: t.offers.confort.target,
+      icon: Shield,
+      color: "#0B3D6E",
+      recommended: false,
+      features: language === "fr"
+        ? ["Maintenance Préventive & Corrective", "Interventions illimitées (Main d'œuvre)", "Visites de contrôle trimestrielles", "Pièces majeures en option"]
+        : ["Preventive & Corrective maintenance", "Unlimited interventions (labor)", "Quarterly control visits", "Major parts as option"],
+    },
+    {
+      name: t.offers.premium.name,
+      target: t.offers.premium.target,
+      icon: Crown,
+      color: "#D4A843",
+      recommended: true,
+      features: language === "fr"
+        ? ["Support & Supervision 24h/7", "SLA Garanti (Disponibilité > 99%)", "Technicien dédié & Gestionnaire de compte", "Stock de consignation sur site", "Plan de progrès annuel inclus"]
+        : ["24/7 Support & Supervision", "Guaranteed SLA (Availability > 99%)", "Dedicated technician & Account manager", "On-site consignment stock", "Annual progress plan included"],
+    },
+    {
+      name: t.offers.surMesure.name,
+      target: t.offers.surMesure.target,
+      icon: Star,
+      color: "#5B7B3A",
+      recommended: false,
+      features: language === "fr"
+        ? ["Architecture Multi-sites / Régionale", "KPI spécifiques & Reporting personnalisé", "Engagement de Résultats", "Gestion de projet & Gouvernance"]
+        : ["Multi-site / Regional architecture", "Specific KPIs & Custom reporting", "Results commitment", "Project management & Governance"],
+    },
+  ], [t, language]);
+
+  const comparison = useMemo(() => language === "fr" ? [
+    { criteria: "Approche", classic: "Mono-domaine / Silos", teranga: "Partenaire Unique Multi-domaines" },
+    { criteria: "Réactivité & Standards", classic: "Délais rallongés", teranga: "Locale + Standards Internationaux" },
+    { criteria: "Engagement de Service", classic: "SLA Non Garantis / Best Effort", teranga: "SLA 98%+ Contractuels" },
+    { criteria: "Modèle Financier", classic: "Vente Unique (CAPEX)", teranga: "Flexible : CAPEX ou OPEX" },
+    { criteria: "Support & Couverture", classic: "Heures Ouvrées / Limité", teranga: "Support 24/7 + Couverture Sahel" },
+  ] : [
+    { criteria: "Approach", classic: "Single-domain / Silos", teranga: "Single Multi-domain Partner" },
+    { criteria: "Responsiveness & Standards", classic: "Extended delays", teranga: "Local + International Standards" },
+    { criteria: "Service Commitment", classic: "Non-guaranteed SLA / Best Effort", teranga: "Contractual SLA 98%+" },
+    { criteria: "Financial Model", classic: "One-time sale (CAPEX)", teranga: "Flexible: CAPEX or OPEX" },
+    { criteria: "Support & Coverage", classic: "Business hours / Limited", teranga: "24/7 Support + Sahel Coverage" },
+  ], [language]);
+
   return (
     <section id="offres" className="py-20 md:py-28 bg-background">
       <div className="container">
         <SectionTitle
-          label="Nos offres"
-          title="Formules de Service"
-          subtitle="Des formules adaptées à chaque taille d'entreprise, de la TPE au grand groupe multi-sites."
+          label={t.offers.label}
+          title={t.offers.title}
+          subtitle={t.offers.subtitle}
         />
 
         {/* Service formulas */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
           {formulas.map((formula, i) => (
-            <AnimatedSection key={formula.name} delay={i * 0.1}>
+            <AnimatedSection key={i} delay={i * 0.1}>
               <div
                 className={`relative bg-white rounded-2xl p-6 border shadow-sm hover:shadow-lg transition-all h-full flex flex-col ${
                   formula.recommended
@@ -113,7 +90,7 @@ export default function OffresSection() {
               >
                 {formula.recommended && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#D4A843] text-white text-xs font-['Outfit'] font-semibold rounded-full">
-                    Recommandé
+                    {t.offers.recommended}
                   </div>
                 )}
 
@@ -152,7 +129,7 @@ export default function OffresSection() {
                       : "bg-[#0B3D6E]/5 text-[#0B3D6E] hover:bg-[#0B3D6E]/10"
                   }`}
                 >
-                  Demander une offre
+                  {t.offers.requestOffer}
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -162,9 +139,9 @@ export default function OffresSection() {
 
         {/* Why Teranga TE - Comparison */}
         <SectionTitle
-          label="Différenciation"
-          title="Pourquoi choisir Teranga TE ?"
-          subtitle="Nous transformons la complexité technique en avantage compétitif simple pour votre entreprise."
+          label={t.offers.diffLabel}
+          title={t.offers.diffTitle}
+          subtitle={t.offers.diffSubtitle}
         />
 
         <AnimatedSection>
@@ -173,15 +150,15 @@ export default function OffresSection() {
               <thead>
                 <tr>
                   <th className="text-left p-4 text-[#0B3D6E]/60 text-sm font-['Outfit'] font-semibold uppercase tracking-wider bg-[#F7F3EB] rounded-tl-xl">
-                    Critères
+                    {t.offers.criteria}
                   </th>
                   <th className="text-center p-4 text-[#0B3D6E]/40 text-sm font-['Outfit'] font-semibold bg-[#F7F3EB]">
-                    Acteurs Classiques
+                    {t.offers.classic}
                   </th>
                   <th className="text-center p-4 text-[#0B3D6E] text-sm font-['Outfit'] font-semibold bg-[#D4A843]/10 rounded-tr-xl">
                     <span className="flex items-center justify-center gap-2">
                       <Star className="w-4 h-4 text-[#D4A843]" />
-                      Teranga TE
+                      {t.offers.teranga}
                     </span>
                   </th>
                 </tr>

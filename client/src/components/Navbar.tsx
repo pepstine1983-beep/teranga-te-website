@@ -3,21 +3,13 @@
  * Warm, organic navigation with golden accents and fluid transitions.
  * Sticky header with background blur on scroll.
  * Supports both anchor links (home page) and route links (Careers).
+ * Includes FR/EN language switcher.
  */
 import { useState, useEffect } from "react";
-import { Menu, X, Phone, Users } from "lucide-react";
+import { Menu, X, Phone, Users, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "wouter";
-
-const navLinks = [
-  { label: "Accueil", href: "#accueil" },
-  { label: "À propos", href: "#apropos" },
-  { label: "Expertises", href: "#expertises" },
-  { label: "Offres", href: "#offres" },
-  { label: "Références", href: "#references" },
-  { label: "Sahel", href: "#sahel" },
-  { label: "Contact", href: "#contact" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -25,20 +17,30 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("accueil");
   const [location] = useLocation();
   const isHome = location === "/";
+  const { language, toggleLanguage, t } = useLanguage();
+
+  const navLinks = [
+    { label: t.nav.home, href: "#accueil" },
+    { label: t.nav.about, href: "#apropos" },
+    { label: t.nav.expertises, href: "#expertises" },
+    { label: t.nav.offers, href: "#offres" },
+    { label: t.nav.references, href: "#references" },
+    { label: t.nav.sahel, href: "#sahel" },
+    { label: t.nav.contact, href: "#contact" },
+  ];
 
   useEffect(() => {
+    const sectionIds = ["accueil", "apropos", "expertises", "offres", "references", "sahel", "contact"];
     const handleScroll = () => {
       setScrolled(window.scrollY > 40);
 
       if (!isHome) return;
-      // Detect active section
-      const sections = navLinks.map((l) => l.href.replace("#", ""));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
         if (el) {
           const rect = el.getBoundingClientRect();
           if (rect.top <= 120) {
-            setActiveSection(sections[i]);
+            setActiveSection(sectionIds[i]);
             break;
           }
         }
@@ -57,7 +59,6 @@ export default function Navbar() {
           el.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       } else {
-        // Navigate to home page with anchor
         window.location.href = "/" + href;
       }
     }
@@ -73,10 +74,7 @@ export default function Navbar() {
     >
       <nav className="container flex items-center justify-between h-20 lg:h-24">
         {/* Logo */}
-        <a
-          href="/"
-          className="flex items-center gap-2 group"
-        >
+        <a href="/" className="flex items-center gap-2 group">
           <img
             src="https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/logo_teranga-1_2298ef91.png"
             alt="Teranga Technology & Energy"
@@ -132,7 +130,7 @@ export default function Navbar() {
                 : "text-white/80 hover:text-white"
             }`}
           >
-            Carrières
+            {t.nav.careers}
             {!isHome && (
               <motion.div
                 layoutId="nav-indicator"
@@ -143,8 +141,22 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* CTA + Mobile Toggle */}
+        {/* CTA + Language Switcher + Mobile Toggle */}
         <div className="flex items-center gap-3">
+          {/* Language Switcher */}
+          <button
+            onClick={toggleLanguage}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-['Outfit'] font-semibold transition-all border ${
+              scrolled
+                ? "border-[#0B3D6E]/20 text-[#0B3D6E] hover:bg-[#0B3D6E]/5"
+                : "border-white/30 text-white hover:bg-white/10"
+            }`}
+            aria-label="Switch language"
+          >
+            <Globe className="w-3.5 h-3.5" />
+            <span>{language === "fr" ? "EN" : "FR"}</span>
+          </button>
+
           <a
             href={isHome ? "#contact" : "/#contact"}
             onClick={(e) => {
@@ -156,7 +168,7 @@ export default function Navbar() {
             className="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white text-sm font-['Outfit'] font-semibold rounded-full shadow-md hover:shadow-lg hover:scale-[1.02] transition-all"
           >
             <Phone className="w-4 h-4" />
-            Contactez-nous
+            {t.nav.contactUs}
           </a>
 
           <button
@@ -215,8 +227,17 @@ export default function Navbar() {
                 }`}
               >
                 <Users className="w-4 h-4" />
-                Carrières
+                {t.nav.careers}
               </a>
+
+              {/* Language switcher mobile */}
+              <button
+                onClick={toggleLanguage}
+                className="px-4 py-3 rounded-lg text-base font-['Outfit'] font-medium transition-colors flex items-center gap-2 text-[#0B3D6E]/70 hover:bg-[#0B3D6E]/5 hover:text-[#0B3D6E]"
+              >
+                <Globe className="w-4 h-4" />
+                {language === "fr" ? "English" : "Français"}
+              </button>
 
               <a
                 href={isHome ? "#contact" : "/#contact"}
@@ -231,7 +252,7 @@ export default function Navbar() {
                 className="mt-2 flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white text-base font-['Outfit'] font-semibold rounded-full"
               >
                 <Phone className="w-4 h-4" />
-                Contactez-nous
+                {t.nav.contactUs}
               </a>
             </div>
           </motion.div>

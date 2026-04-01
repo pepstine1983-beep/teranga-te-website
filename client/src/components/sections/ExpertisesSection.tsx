@@ -3,42 +3,17 @@
  * 4 expertise domains with detailed sub-services, brand logos, and enriched descriptions.
  * Sand background with wave separators.
  */
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Monitor,
-  Zap,
-  Sun,
-  ClipboardCheck,
-  Server,
-  Cloud,
-  ShieldCheck,
-  Cable,
-  Printer,
-  BatteryCharging,
-  Gauge,
-  FileSearch,
-  PanelTop,
-  Warehouse,
-  Battery,
-  HardHat,
-  ArrowRight,
-  Network,
-  Cog,
-  BarChart3,
-  Laptop,
-  Wifi,
-  Thermometer,
-  Eye,
-  Flame,
-  Lock,
-  Lightbulb,
-  Smartphone,
-  Wrench,
-  CheckCircle,
+  Monitor, Zap, Sun, ClipboardCheck, Server, Cloud, ShieldCheck, Cable, Printer,
+  BatteryCharging, Gauge, FileSearch, PanelTop, Warehouse, Battery, HardHat,
+  ArrowRight, Network, Cog, BarChart3, Laptop, Wifi, Thermometer, Eye, Flame,
+  Lock, Lightbulb, Smartphone, Wrench, CheckCircle,
 } from "lucide-react";
 import AnimatedSection from "../AnimatedSection";
 import SectionTitle from "../SectionTitle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ICT_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/expertise-ict-fBaDApo4qym68m9DBUzyBE.webp";
@@ -49,229 +24,163 @@ const SOLAR_IMG =
 const CONTROL_IMG =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663476210552/X8H4fjGbsgzCUU4Ftp9pLB/inspection-ascenseurs_8f6624e3.png";
 
-const expertises = [
-  {
-    id: "ict",
-    icon: Monitor,
-    title: "ICT",
-    subtitle: "Technologies de l'Information",
-    tagline: "Votre réseau ne s'arrête pas. Votre business non plus.",
-    description:
-      "Des infrastructures robustes pour une entreprise connectée et performante. Conception, déploiement et gestion d'infrastructures IT complètes avec des SLA contractuels et un support 24/7.",
-    image: ICT_IMG,
-    color: "#0B3D6E",
-    subSections: [
-      {
-        title: "MPS (Managed Print Services)",
-        icon: Printer,
-        items: [
-          "Modèles CAPEX ou OPEX selon vos besoins",
-          "Imprimantes multifonctions, scanners, imprimantes de production",
-          "Maintenance avec ou sans pièces de rechange",
-          "Leasing : solution complète avec engagement de résultats",
-        ],
-        brands: "Ricoh, Epson, Riso",
-      },
-      {
-        title: "Postes de travail & Serveurs",
-        icon: Laptop,
-        items: [
-          "Postes de travail : Dell, HP, Lenovo",
-          "Serveurs : Dell, HP, IBM",
-          "Modèle OPEX : packages sur mesure avec engagement de résultats",
-        ],
-        brands: "Dell, HP, Lenovo, IBM",
-      },
-      {
-        title: "Réseaux & Sécurité",
-        icon: ShieldCheck,
-        items: [
-          "Matériel réseau : fourniture, installation, maintenance",
-          "Sécurité réseau : protection et surveillance",
-          "Firewalls, switches, points d'accès Wi-Fi",
-        ],
-        brands: "Cisco, Fortinet, Ubiquiti",
-      },
-      {
-        title: "Câblage Réseau",
-        icon: Cable,
-        items: [
-          "Câblage structuré cuivre et fibre optique",
-          "Baies de brassage, chemins de câbles",
-          "Certification et recette des installations",
-        ],
-        brands: "Legrand, Nexans, Belden",
-      },
-      {
-        title: "Cloud, Virtualisation & Infogérance",
-        icon: Cloud,
-        items: [
-          "Support & Helpdesk — supervision proactive 24/7",
-          "Cloud & Virtualisation (VMware, Microsoft Azure)",
-          "Cybersécurité : protection & conformité",
-        ],
-        brands: "Microsoft, VMware",
-      },
-    ],
-  },
-  {
-    id: "energy",
-    icon: Zap,
-    title: "Énergie",
-    subtitle: "CFO, CFA & CVC",
-    tagline: "Garantir la continuité de vos opérations, en toute sécurité.",
-    description:
-      "Solutions complètes de production, distribution et sécurisation d'énergie. Audit énergétique, courant fort, courant faible, climatisation — un seul interlocuteur pour toute votre infrastructure.",
-    image: ENERGY_IMG,
-    color: "#C49535",
-    subSections: [
-      {
-        title: "CFO (Courant Fort)",
-        icon: BatteryCharging,
-        items: [
-          "Onduleurs (UPS), Groupes électrogènes",
-          "Inverseurs, Régulateurs de tension",
-          "Câblage, TGBT",
-          "Maintenance préventive et corrective",
-        ],
-        brands: "GE, Pramac, Kohler, Generac, APC, Eaton, Schneider, Socomec, Cummins, FG Wilson, Himoinsa, Eneria",
-      },
-      {
-        title: "CFA (Courant Faible)",
-        icon: Eye,
-        items: [
-          "Contrôle d'accès",
-          "Détection incendie",
-          "Vidéosurveillance, anti-intrusion",
-          "Câblage CFA, sécurité physique et logique",
-        ],
-        brands: "Honeywell, Hikvision, Axis, Vivotek, Paradox, Texecom, Siemens, Esser",
-      },
-      {
-        title: "CVC (Climatisation & Ventilation)",
-        icon: Thermometer,
-        items: [
-          "Climatiseurs, groupes froids",
-          "Armoires de refroidissement",
-          "Installation et maintenance",
-        ],
-        brands: "Daikin, Carrier, Airwell, Lennox",
-      },
-      {
-        title: "Audit Énergétique",
-        icon: Gauge,
-        items: [
-          "Analyse des consommations et ROI",
-          "Supervision & monitoring en temps réel",
-          "Modèle OPEX : packages sur mesure",
-        ],
-        brands: "",
-      },
-    ],
-  },
-  {
-    id: "solar",
-    icon: Sun,
-    title: "Énergies Renouvelables",
-    subtitle: "Solaire Photovoltaïque & Stockage",
-    tagline: "L'énergie du soleil au service de votre croissance.",
-    description:
-      "Conception et réalisation de centrales solaires, solutions hybrides et micro-réseaux. Modèles EPC clé en main avec options de financement CAPEX ou OPEX (Tiers-Investisseur). Notre offre intègre une solution de monitoring énergétique permettant de suivre en temps réel la consommation globale et par équipement, avec un reporting automatisé incluant le TOP 5 des équipements les plus énergivores.",
-    image: SOLAR_IMG,
-    color: "#5B7B3A",
-    subSections: [
-      {
-        title: "Solaire Photovoltaïque",
-        icon: PanelTop,
-        items: [
-          "On-Grid, Off-Grid, Hybride",
-          "EPC clé en main : étude, fourniture, installation, formation",
-          "EPC + Financement : modèle Tiers-Investisseur (OPEX)",
-        ],
-        brands: "JA Solar, Jinko, Longi",
-      },
-      {
-        title: "Solar Home System",
-        icon: Smartphone,
-        items: [
-          "Kits modulaires pour zones rurales",
-          "Paiement mobile intégré (Pay-as-you-go)",
-          "Monitoring à distance",
-        ],
-        brands: "Victron Energy, Bboxx, Mobisol, Schneider Electric",
-      },
-      {
-        title: "Monitoring & Reporting Énergétique",
-        icon: BarChart3,
-        items: [
-          "Suivi en temps réel de la consommation globale et par équipement",
-          "Reporting automatisé : TOP 5 des équipements les plus énergivores",
-          "Optimisation des coûts et détection des anomalies",
-          "Tableaux de bord personnalisés pour le client",
-        ],
-        brands: "Fronius, Huawei, SMA, SolarEdge, Meteocontrol, Victron",
-      },
-      {
-        title: "Stockage & Micro-réseaux",
-        icon: Battery,
-        items: [
-          "Batteries Li-ion, EMS/BMS intelligents",
-          "Monitoring IoT 24/7",
-          "Applications : data centers, télécoms, éclairage public, agro-industrie",
-        ],
-        brands: "Huawei, SMA, Victron",
-      },
-      {
-        title: "EPC & Maintenance",
-        icon: HardHat,
-        items: [
-          "Projets EPC clé en main",
-          "Suivi de performance à distance",
-          "Opération & Maintenance (O&M)",
-        ],
-        brands: "",
-      },
-    ],
-  },
-  {
-    id: "control",
-    icon: ClipboardCheck,
-    title: "Contrôle Technique Lift",
-    subtitle: "Inspection & Conformité Ascenseurs",
-    tagline: "La sécurité de vos ascenseurs, notre priorité.",
-    description:
-      "Inspection réglementaire et contrôle technique des ascenseurs et équipements de levage selon les normes européennes EN 81-20/50. Organisme agréé avec couverture nationale et régionale.",
-    image: CONTROL_IMG,
-    color: "#0B3D6E",
-    subSections: [
-      {
-        title: "Services Certifiés",
-        icon: FileSearch,
-        items: [
-          "Inspection de mise en service",
-          "Contrôles périodiques : conformité EN 81-20/50",
-          "Audits de sécurité : diagnostics et recommandations",
-          "Registre national & reporting réglementaire",
-        ],
-        brands: "",
-      },
-      {
-        title: "Nos Engagements",
-        icon: CheckCircle,
-        items: [
-          "Organisme agréé",
-          "Rapports sous 48h",
-          "Techniciens certifiés",
-          "Couverture nationale et régionale",
-        ],
-        brands: "",
-      },
-    ],
-  },
-];
-
 export default function ExpertisesSection() {
   const [activeTab, setActiveTab] = useState("ict");
+  const { t } = useLanguage();
+
+  // Sub-section items stay the same (technical terms) but section titles/descriptions are translated
+  const expertises = useMemo(() => [
+    {
+      id: "ict",
+      icon: Monitor,
+      title: t.expertises.ict.title,
+      subtitle: t.expertises.ict.fullTitle,
+      tagline: t.expertises.ict.tagline,
+      description: t.expertises.ict.description,
+      image: ICT_IMG,
+      color: "#0B3D6E",
+      subSections: [
+        {
+          title: "MPS (Managed Print Services)",
+          icon: Printer,
+          items: [
+            "CAPEX / OPEX",
+            "Multifunction, scanners, production printers",
+            "Maintenance",
+            "Leasing",
+          ],
+          brands: "Ricoh, Epson, Riso",
+        },
+        {
+          title: "Workstations & Servers",
+          icon: Laptop,
+          items: ["Dell, HP, Lenovo", "Dell, HP, IBM", "OPEX packages"],
+          brands: "Dell, HP, Lenovo, IBM",
+        },
+        {
+          title: "Networks & Security",
+          icon: ShieldCheck,
+          items: ["Network equipment", "Network security", "Firewalls, switches, Wi-Fi"],
+          brands: "Cisco, Fortinet, Ubiquiti",
+        },
+        {
+          title: "Network Cabling",
+          icon: Cable,
+          items: ["Copper & fiber optic", "Patch panels", "Certification"],
+          brands: "Legrand, Nexans, Belden",
+        },
+        {
+          title: "Cloud, Virtualization & IT Management",
+          icon: Cloud,
+          items: ["Helpdesk 24/7", "VMware, Microsoft Azure", "Cybersecurity"],
+          brands: "Microsoft, VMware",
+        },
+      ],
+    },
+    {
+      id: "energy",
+      icon: Zap,
+      title: t.expertises.energy.title,
+      subtitle: t.expertises.energy.fullTitle,
+      tagline: t.expertises.energy.tagline,
+      description: t.expertises.energy.description,
+      image: ENERGY_IMG,
+      color: "#C49535",
+      subSections: [
+        {
+          title: "CFO (High Current)",
+          icon: BatteryCharging,
+          items: ["UPS, Generators", "Inverters, Voltage regulators", "Cabling, TGBT", "Preventive & corrective maintenance"],
+          brands: "GE, Pramac, Kohler, Generac, APC, Eaton, Schneider, Socomec, Cummins, FG Wilson, Himoinsa, Eneria",
+        },
+        {
+          title: "CFA (Low Current)",
+          icon: Eye,
+          items: ["Access control", "Fire detection", "CCTV, intrusion detection", "CFA cabling"],
+          brands: "Honeywell, Hikvision, Axis, Vivotek, Paradox, Texecom, Siemens, Esser",
+        },
+        {
+          title: "HVAC",
+          icon: Thermometer,
+          items: ["Air conditioning, chillers", "Cooling cabinets", "Installation & maintenance"],
+          brands: "Daikin, Carrier, Airwell, Lennox",
+        },
+        {
+          title: "Energy Audit",
+          icon: Gauge,
+          items: ["Consumption analysis & ROI", "Real-time monitoring", "OPEX packages"],
+          brands: "",
+        },
+      ],
+    },
+    {
+      id: "solar",
+      icon: Sun,
+      title: t.expertises.renewables.title,
+      subtitle: t.expertises.renewables.fullTitle,
+      tagline: t.expertises.renewables.tagline,
+      description: t.expertises.renewables.description,
+      image: SOLAR_IMG,
+      color: "#5B7B3A",
+      subSections: [
+        {
+          title: "Solar Photovoltaic",
+          icon: PanelTop,
+          items: ["On-Grid, Off-Grid, Hybrid", "Turnkey EPC", "EPC + Financing (OPEX)"],
+          brands: "JA Solar, Jinko, Longi",
+        },
+        {
+          title: "Solar Home System",
+          icon: Smartphone,
+          items: ["Modular kits", "Mobile payment (Pay-as-you-go)", "Remote monitoring"],
+          brands: "Victron Energy, Bboxx, Mobisol, Schneider Electric",
+        },
+        {
+          title: "Energy Monitoring & Reporting",
+          icon: BarChart3,
+          items: ["Real-time consumption tracking", "TOP 5 energy-consuming equipment", "Cost optimization", "Custom dashboards"],
+          brands: "Fronius, Huawei, SMA, SolarEdge, Meteocontrol, Victron",
+        },
+        {
+          title: "Storage & Micro-grids",
+          icon: Battery,
+          items: ["Li-ion batteries, EMS/BMS", "IoT monitoring 24/7", "Data centers, telecoms, public lighting"],
+          brands: "Huawei, SMA, Victron",
+        },
+        {
+          title: "EPC & Maintenance",
+          icon: HardHat,
+          items: ["Turnkey EPC projects", "Remote performance tracking", "O&M"],
+          brands: "",
+        },
+      ],
+    },
+    {
+      id: "control",
+      icon: ClipboardCheck,
+      title: t.expertises.control.title,
+      subtitle: t.expertises.control.fullTitle,
+      tagline: t.expertises.control.tagline,
+      description: t.expertises.control.description,
+      image: CONTROL_IMG,
+      color: "#0B3D6E",
+      subSections: [
+        {
+          title: "Certified Services",
+          icon: FileSearch,
+          items: ["Commissioning inspection", "EN 81-20/50 periodic controls", "Safety audits", "National registry & regulatory reporting"],
+          brands: "",
+        },
+        {
+          title: "Our Commitments",
+          icon: CheckCircle,
+          items: ["Approved body", "Reports within 48h", "Certified technicians", "National & regional coverage"],
+          brands: "",
+        },
+      ],
+    },
+  ], [t]);
+
   const active = expertises.find((e) => e.id === activeTab)!;
 
   return (
@@ -286,9 +195,9 @@ export default function ExpertisesSection() {
       <div className="bg-[#F5F0E8]">
         <div className="container py-4">
           <SectionTitle
-            label="Nos services"
-            title="Nos 4 Domaines d'Expertise"
-            subtitle="Des solutions intégrées couvrant l'ensemble du cycle de vie technologique et énergétique de vos infrastructures critiques."
+            label={t.expertises.label}
+            title={t.expertises.title}
+            subtitle={t.expertises.subtitle}
           />
 
           {/* Tab navigation */}
@@ -322,11 +231,7 @@ export default function ExpertisesSection() {
             >
               {/* Hero banner with image */}
               <div className="relative rounded-2xl overflow-hidden shadow-xl mb-8 aspect-[21/8]">
-                <img
-                  src={active.image}
-                  alt={active.title}
-                  className="w-full h-full object-cover"
-                />
+                <img src={active.image} alt={active.title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                   <span
@@ -339,7 +244,7 @@ export default function ExpertisesSection() {
                     {active.subtitle}
                   </h3>
                   <p className="text-white/80 italic text-sm md:text-base font-['DM_Serif_Display']">
-                    "{active.tagline}"
+                    {active.tagline}
                   </p>
                 </div>
               </div>
@@ -383,7 +288,7 @@ export default function ExpertisesSection() {
                     {sub.brands && (
                       <div className="pt-3 border-t border-[#D4A843]/10">
                         <span className="text-xs font-['Outfit'] font-semibold text-[#D4A843] uppercase tracking-wider">
-                          Marques :
+                          {t.expertises.brands}
                         </span>
                         <span className="text-xs text-[#0B3D6E]/60 ml-2">{sub.brands}</span>
                       </div>
@@ -402,7 +307,7 @@ export default function ExpertisesSection() {
                   }}
                   className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-[#D4A843] to-[#C49535] text-white font-['Outfit'] font-semibold rounded-full shadow-md hover:shadow-lg hover:scale-[1.02] transition-all"
                 >
-                  Demander une offre
+                  {t.expertises.requestOffer}
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
